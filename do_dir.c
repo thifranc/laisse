@@ -6,23 +6,35 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/06 11:03:13 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/07 17:29:18 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/09 10:39:49 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 #include <stdio.h>
 
-int		main(int ac, char **av)
+void	do_dir(char *dir_name)
 {
 	DIR	*lol;
 	struct dirent	*mdr;
 
-	if (ac == 2)
+	lol = opendir(dir_name);
+	printf("this is my dir => %s\n", dir_name);
+	while ((mdr = readdir(lol)) != NULL)
+		printf("%s\n", mdr->d_name);
+	closedir(lol);
+}
+
+int		main(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
 	{
-		lol = opendir(av[1]);
-		while ((mdr = readdir(lol)) != NULL)
-			printf("%s\n", mdr->d_name);
+		do_dir(av[i]);
+		printf("end of dir\n\n");
+		i++;
 	}
 	return (0);
 }
