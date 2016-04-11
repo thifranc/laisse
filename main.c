@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/11 16:18:41 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:35:21 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	get_info(t_list	*cur)
 {
 	if (!cur)
 		return ;
-	lstat(cur->name, cur->lstat);
+	lstat(cur->path, &(cur->lstat));
 	get_info(cur->next);
 }
-
