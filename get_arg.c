@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/09 14:39:31 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/11 15:49:50 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_list	*arg_to_list(int ac, char **av)
 	node = NULL;
 	while (i < ac)
 	{
-		new_in_list(av[i], &node);
+		if ((opt & OPT_A) || av[i][0] != '.')
+			new_in_list(av[i], &node);
 		i++;
 	}
 	return (node);
