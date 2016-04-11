@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:24:06 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/10 10:41:31 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:16:35 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,15 @@ void	recur_me(t_list *lol, t_list *cur)
 
 	if (!cur)
 	{
-//		printf("erasing////////////\n");
 		while (lol)
 		{
 			new = lol;
 			lol = lol->next;
 			free(new);
 		}
-//		printf("fin de recur_me peace out bros\n");
 	}
 	else if (cur->name[0] == 'd')
 	{
-//		printf("trouve un repo---------\n");
 		new = do_dir(cur->name);
 		print_list(new);
 		recur_me(new, new);
@@ -67,7 +64,6 @@ void	recur_me(t_list *lol, t_list *cur)
 	}
 	else
 	{
-//		printf("recursing........\n");
 		recur_me(lol, cur->next);
 	}
 }
