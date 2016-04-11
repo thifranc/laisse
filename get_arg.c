@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/11 15:49:50 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:14:09 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ t_list	*arg_to_list(int ac, char **av)
 	node = NULL;
 	while (i < ac)
 	{
-		if ((opt & OPT_A) || av[i][0] != '.')
+		if ((opt & OPT_A) || av[i][0] != '.')//dont get arg if !A and file is hidden
+		{
 			new_in_list(av[i], &node);
+			node->path = av[i];//voir si actualise bien le node
+		}
 		i++;
 	}
 	return (node);

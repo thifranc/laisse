@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/11 15:33:35 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/11 16:08:02 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,21 @@ int		main(int ac, char **av)
 	recur_me(&repo_list);//if !R opt it will just print list-directories content
 }
 
+void	get_info(t_list	*cur)
+{
+	if (!cur)
+		return ;
+	lstat(cur->name, cur->lstat);
+	get_info(cur->next);
+}
+
 void	recur_me(t_list **list, short opt)
 {
 	if (!*list)
 		dellist;
 	else if (S_ISDIR((*list)->lstat.st_mode))
 	{
-		get_new_list;
+		get_new_list((*list)->path);
 		sort_list();
 		get_info();
 		print_list();
