@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:12:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/12 15:34:46 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/12 15:53:56 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,16 @@ void	ft_get_first_char(char **s, char *flag)
 {
 	while (**s && ft_get_char("#+- 0", **s) != -1)
 	{
-		if (**s == '#')
-			flag[0] = '#';
-		if ((**s == '0' && flag[1] == '-') || (**s == '-' && flag[1] == '0')
-		|| (**s == '+' && flag[2] == ' ') || (**s == ' ' && flag[2] == '+'))
-			ft_error(0);
 		if (**s == '0' && flag[1] != '-')
 			flag[1] = **s;
 		if (**s == '-' && flag[1] != '0')
 			flag[1] = **s;
-		if (**s == ' ')
-			flag[2] = **s;
-		if (**s == '+')
-			flag[2] = **s;
 		(*s)++;
 	}
 }
 
 void	ft_get_last_char(char **s, char *flag)
 {
-	while (**s && ft_get_char("hjzl", **s) != -1)
-	{
-		if (ft_get_char("hjzl", **s) != -1 && flag[3])
-			ft_error(7);
-		if (**s == *(*s + 1) && (**s == 'h' || **s == 'l'))
-		{
-			flag[3] = **s - 32;
-			(*s)++;
-		}
-		else
-			flag[3] = **s;
-		(*s)++;
-	}
 	flag[4] = **s;
 }
 
