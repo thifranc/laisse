@@ -6,57 +6,12 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 16:20:24 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 19:02:02 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minilib.h"
-
-char	*get_till_opt(char **str)
-{
-	int		i;
-	char	*out;
-
-	i = 0;
-	while (*str[i] != '%')
-		i++;
-	if (!(out = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (**str != '%')
-	{
-		out[i] = **str;
-		(*str)++;
-	}
-	out[i] = '\0';
-	return (out);
-}
-
-char	*get_opt_and_arg(char **s, va_list va)
-{
-	int				opt;
-	int				max;
-	int				d_arg;
-	char			*s_arg;
-
-	opt = 0;
-	max = 0;
-	(*s)++;
-	if (**s == '-')
-	{
-		opt = 1;
-		(*s)++;
-	}
-	if (**s == '*')
-	{
-		max = va_arg(va, int);
-		(*s)++;
-	}
-	if (**s == 's')
-		return (do_string(opt, max, va));
-	else
-		return (do_nb(opt, max, va));
-}
+#include "../libft/libft.h"
 
 int		get_blank(int opt, char *out, int max, int len)
 {
@@ -79,7 +34,27 @@ int		get_blank(int opt, char *out, int max, int len)
 	return (end - (max - len));
 }
 
-char	*do_nb(int opt, int max)
+char	*get_till_opt(char **str)
+{
+	int		i;
+	char	*out;
+
+	i = 0;
+	while ((*str)[i] && (*str)[i] != '%')
+		i++;
+	if (!(out = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (**str && **str != '%')
+	{
+		out[i++] = **str;
+		(*str)++;
+	}
+	out[i] = '\0';
+	return (out);
+}
+
+char	*do_nb(int opt, int max, va_list va)
 {
 	char	*out;
 	int		arg;
@@ -88,7 +63,7 @@ char	*do_nb(int opt, int max)
 
 	arg = va_arg(va, int);
 	len = ft_nb_len_base(arg, 10);
-	if (!(out = malloc(sizeof * (max > len ? max : len) + 1)))
+	if (!(out = malloc((max > len ? max : len) + 1)))
 		return (NULL);
 	out[max > len ? max : len] = '\0';
 	k = get_blank(opt, out, max, len);
@@ -103,34 +78,65 @@ char	*do_nb(int opt, int max)
 	return (out);
 }
 
-char	*do_string(int opt, int max)
+char	*do_string(int opt, int max, va_list va)
 {
 	char	*out;
 	char	*arg;
 	int		i;
 	int		k;
+	int		len;
 
 	i = 0;
-	arg = va_arg(va, const char *);
+	arg = va_arg(va, char *);
 	len = ft_strlen(arg);
-	if (!(out = malloc(sizeof * (max > len ? max : len) + 1)))
+	if (!(out = malloc((max > len ? max : len) + 1)))
 		return (NULL);
 	out[max > len ? max : len] = '\0';
 	k = get_blank(opt, out, max, len);
 	while (len)
 		out[k--] = arg[len--];
+//	printf("retour de do_string %s\n", out);
 	return (out);
+}
+
+char	*get_opt_and_arg(char **s, va_list va)
+{
+	int				opt;
+	int				max;
+
+	opt = 0;
+	max = 0;
+	(*s)++;
+	if (**s == '-')
+	{
+		opt = 1;
+		(*s)++;
+	}
+	if (**s == '*')
+	{
+		max = va_arg(va, int);
+		(*s)++;
+	}
+	if (**s == 's')
+		return (do_string(opt, max, va));
+	else
+		return (do_nb(opt, max, va));
 }
 
 void	print_it(char *str, ...)
 {
 	va_list	va;
+	char	*out;
+	char	*tmp;
+	char	*tmp2;
 
 	va_start(va, str);
 	while (*str)
 	{
 		out = get_till_opt(&str);
-		tmp = get_opt_and_arg(&str);
+		printf("%s", out);
+		tmp = get_opt_and_arg(&str, va);
+		printf("%s\n", tmp);
 		tmp2 = ft_strdup(out);
 		ft_memdel((void*)&out);
 		out = ft_strjoin(tmp2, tmp);
@@ -139,4 +145,11 @@ void	print_it(char *str, ...)
 	}
 	va_end(va);
 	write(1, out, ft_strlen(out));
+}
+
+int		main(int ac, char **av)
+{
+	if (ac == 4)
+		print_it("arg 1 ==>%sarg 2 ==>%sarg 3 ==>%s", av[1], av[2], av[3]);
+	return (0);
 }
