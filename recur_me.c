@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 18:12:30 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 18:26:55 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ t_list	*get_new_list(char *path)
 	node = NULL;
 	while ((data = readdir(dir)) != NULL)
 	{
-		new_in_list(data->d_name, &node);
-		node->path = make_path(path, data->d_name);
+		if (data->d_name[0] != '.')//+- = opt a toussa
+		{
+			new_in_list(data->d_name, &node);
+			node->path = make_path(path, data->d_name);
+		}
 	}
 	closedir(dir);
 	return (node);
