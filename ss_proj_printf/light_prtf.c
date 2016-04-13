@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 16:06:39 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 16:20:24 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_opt_and_arg(char **s, va_list va)
 {
 	int				opt;
 	int				max;
-	long long int	d_arg;
+	int				d_arg;
 	char			*s_arg;
 
 	opt = 0;
