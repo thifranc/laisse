@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 16:48:15 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 17:04:27 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define LIB_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <dirent.h>
 #include <sys/stat.h>
 
 #define OPT_A 1
@@ -33,7 +35,7 @@ typedef	struct	s_list
 	struct stat		lstat;
 }					t_list;
 
-void	recur_me(t_list *lol, t_list *cur);
+void	recur_me(t_list **lol);
 t_list	*do_dir(char *dir_name);
 t_list	*new_node(char *name);
 void	new_in_list(char *data, t_list **list);
