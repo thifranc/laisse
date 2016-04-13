@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/11 15:17:03 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 16:48:15 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define LIB_H
 
 #include <stdio.h>
+#include <sys/stat.h>
+
 #define OPT_A 1
 #define OPT_F 3
 #define OPT_T 4
