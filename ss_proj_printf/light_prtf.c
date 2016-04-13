@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 15:24:42 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 16:06:39 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_opt_and_arg(char **s, va_list va)
 	int				opt;
 	int				max;
 	long long int	d_arg;
-	char			*s_arg
+	char			*s_arg;
 
 	opt = 0;
 	max = 0;
@@ -58,17 +58,49 @@ char	*get_opt_and_arg(char **s, va_list va)
 		return (do_nb(opt, max, va));
 }
 
+int		get_blank(int opt, char *out, int max, int len)
+{
+	int		end;
+	int		i;
+
+	end = (max > len ? max : len) - 1;
+	i = 0;
+	if (!opt)
+	{
+		while ((max - i) > len)
+			out[i++] = ' ';
+		return (end);
+	}
+	else
+	{
+		while ((max - i) > len)
+			out[end - i++] = ' ';
+	}
+	return (end - (max - len));
+}
+
 char	*do_nb(int opt, int max)
 {
 	char	*out;
 	int		arg;
+	int		len;
+	int		k;
 
 	arg = va_arg(va, int);
 	len = ft_nb_len_base(arg, 10);
 	if (!(out = malloc(sizeof * (max > len ? max : len) + 1)))
 		return (NULL);
 	out[max > len ? max : len] = '\0';
-
+	k = get_blank(opt, out, max, len);
+	if (arg == 0)
+		out[0] = '0';
+	while (arg)
+	{
+		out[k] = arg % 10 + 48;
+		arg /= 10;
+		k--;
+	}
+	return (out);
 }
 
 char	*do_string(int opt, int max)
@@ -83,23 +115,10 @@ char	*do_string(int opt, int max)
 	len = ft_strlen(arg);
 	if (!(out = malloc(sizeof * (max > len ? max : len) + 1)))
 		return (NULL);
-	while (max > len && !opt)
-	{
-		out[i++] = ' ';
-		max--;
-	}
-	k = 0;
-	while (arg[k])
-	{
-		out[i + k] = arg[k];
-		k++;
-	}
-	while (max > len && opt)
-	{
-		out[k++] = ' ';
-		max--;
-	}
-	out[k + i] = '\0';
+	out[max > len ? max : len] = '\0';
+	k = get_blank(opt, out, max, len);
+	while (len)
+		out[k--] = arg[len--];
 	return (out);
 }
 
