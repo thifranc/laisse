@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 17:06:25 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/13 18:12:30 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_list	*get_new_list(char *path)
 	t_list			*node;
 
 	dir = opendir(path);
+	node = NULL;
 	while ((data = readdir(dir)) != NULL)
 	{
 		new_in_list(data->d_name, &node);
@@ -76,14 +77,19 @@ void	recur_me(t_list **list)
 	//	print_list();
 	//	if (opt & OPT_RCUR)
 		tmp = new;
+		printf("%s:\n", (*list)->path);
 		while (tmp)
 		{
-			printf("%s &&&&&&&& %s \n", tmp->name, tmp->path);
+			printf("%s\n", tmp->name);
 			tmp = tmp->next;
 		}
+		printf("\n");
 		recur_me(&new);
 		recur_me(&(*list)->next);
 	}
 	else
+	{
+//		printf("loupe\n");
 		recur_me(&(*list)->next);
+	}
 }
