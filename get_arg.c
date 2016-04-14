@@ -6,13 +6,15 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 17:07:03 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:22:20 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "lib.h"
+
+void	get_info(char *path);
 
 t_list	*new_node(char *name)
 {
@@ -62,10 +64,10 @@ int		main(int ac, char **av)
 	cpy = list;
 	while (list)
 	{
-		printf("%s &&&&& %s\n", list->name, list->path);
+		get_info(list->path);
 		list = list->next;
 	}
 	printf("end of directories listing\n");
-	recur_me(&cpy);
+	//recur_me(&cpy);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 14:07:38 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:16:37 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	get_info(char *path_file)
 	xd = getgrgid(lol.st_gid);
 	print_it("%s %d %s %s %d %s %s\n", get_type(lol.st_mode), lol.st_nlink, mdr->pw_name, xd->gr_name, lol.st_size, "2015", path_file);
 }
-
+/*
 int		main(int ac, char **av)
 {
 	int	i;
@@ -113,4 +113,4 @@ int		main(int ac, char **av)
 		i++;
 	}
 	return (0);
-}
+}*/
