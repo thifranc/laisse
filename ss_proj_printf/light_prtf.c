@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 11:05:57 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 13:29:06 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*do_nb(int opt, int max, va_list va)
 	if (!(out = malloc((max > len ? max : len) + 1)))
 		return (NULL);
 	out[max > len ? max : len] = '\0';
-	k = get_blank(opt, out, max, len);
+	k = get_blank(opt, out, max, len) - 1;
 	if (arg == 0)
 		out[0] = '0';
 	while (arg)
@@ -147,10 +147,12 @@ void	print_it(char *str, ...)
 	va_end(va);
 	write(1, out, ft_strlen(out));
 }
-
+/*
 int		main(int ac, char **av)
 {
 	if (ac == 4)
-		print_it("arg 1 ==>%*s\narg 2 ==>%s\narg 3 ==>%s\n", 12, av[1], av[2], av[3]);
+	{
+		print_it("arg 1 ==>%*s\narg 2 ==>%s\narg 3 ==>%s &&%d\n", 12, av[1], av[2], av[3], 98768976);
+	}
 	return (0);
-}
+}*/

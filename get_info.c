@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 13:15:08 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 13:44:57 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <pwd.h>
 #include <grp.h>
 
+void	print_it(char *str, ...);
 
 void	get_other_right(mode_t st_mode, char *r)
 {
@@ -97,7 +98,7 @@ void	get_info(char *path_file)
 	lstat(path_file, &lol);
 	mdr = getpwuid(lol.st_uid);
 	xd = getgrgid(lol.st_gid);
-	printf("name: %s\nauteur: %s\ngroup: %s\ninode: %lld\nnb_link: %d\nsize: %lld\nrights: %s\n", path_file, mdr->pw_name, xd->gr_name, lol.st_ino, lol.st_nlink, lol.st_size, get_type(lol.st_mode));
+	print_it("name: %s\nauteur: %s\ngroup: %s\ninode: %d\nnb_link: %d\nsize: %d\nrights: %s\n", path_file, mdr->pw_name, xd->gr_name, lol.st_ino, lol.st_nlink, lol.st_size, get_type(lol.st_mode));
 }
 
 int		main(int ac, char **av)
