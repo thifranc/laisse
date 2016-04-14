@@ -6,11 +6,13 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 18:26:55 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:06:03 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+
+void	get_info(char *path);
 
 int		ft_strlen(char *s)
 {
@@ -76,14 +78,14 @@ void	recur_me(t_list **list)
 	{
 		new = get_new_list((*list)->path);
 	//	sort_list();
-	//	get_info();
+		//get_info((*list)->path);
 	//	print_list();
 	//	if (opt & OPT_RCUR)
 		tmp = new;
 		printf("%s:\n", (*list)->path);
 		while (tmp)
 		{
-			printf("%s\n", tmp->name);
+			get_info(tmp->path);
 			tmp = tmp->next;
 		}
 		printf("\n");

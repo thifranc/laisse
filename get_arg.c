@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 14:22:20 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 14:59:19 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int		main(int ac, char **av)
 		list = list->next;
 	}
 	printf("end of directories listing\n");
-	//recur_me(&cpy);
+	recur_me(&cpy);
 	return (0);
 }
