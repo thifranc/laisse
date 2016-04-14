@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 19:02:02 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 11:05:57 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		get_blank(int opt, char *out, int max, int len)
 	int		end;
 	int		i;
 
-	end = (max > len ? max : len) - 1;
+	end = (max > len ? max : len);
 	i = 0;
 	if (!opt)
 	{
@@ -31,7 +31,7 @@ int		get_blank(int opt, char *out, int max, int len)
 		while ((max - i) > len)
 			out[end - i++] = ' ';
 	}
-	return (end - (max - len));
+	return (end - (max - len));//pb si max = 0 et len > 0;
 }
 
 char	*get_till_opt(char **str)
@@ -93,16 +93,15 @@ char	*do_string(int opt, int max, va_list va)
 		return (NULL);
 	out[max > len ? max : len] = '\0';
 	k = get_blank(opt, out, max, len);
-	while (len)
+	while (len > -1)
 		out[k--] = arg[len--];
-//	printf("retour de do_string %s\n", out);
 	return (out);
 }
 
 char	*get_opt_and_arg(char **s, va_list va)
 {
-	int				opt;
-	int				max;
+	int		opt;
+	int		max;
 
 	opt = 0;
 	max = 0;
@@ -131,17 +130,19 @@ void	print_it(char *str, ...)
 	char	*tmp2;
 
 	va_start(va, str);
+	out = NULL;
 	while (*str)
 	{
-		out = get_till_opt(&str);
-		printf("%s", out);
-		tmp = get_opt_and_arg(&str, va);
-		printf("%s\n", tmp);
+		tmp = get_till_opt(&str);
 		tmp2 = ft_strdup(out);
-		ft_memdel((void*)&out);
 		out = ft_strjoin(tmp2, tmp);
-		ft_memdel((void*)&tmp);
-		ft_memdel((void*)&tmp2);
+		if (*str && *str == '%')
+		{
+			tmp = get_opt_and_arg(&str, va);
+			str++;
+			tmp2 = ft_strdup(out);
+			out = ft_strjoin(tmp2, tmp);
+		}
 	}
 	va_end(va);
 	write(1, out, ft_strlen(out));
@@ -150,6 +151,6 @@ void	print_it(char *str, ...)
 int		main(int ac, char **av)
 {
 	if (ac == 4)
-		print_it("arg 1 ==>%sarg 2 ==>%sarg 3 ==>%s", av[1], av[2], av[3]);
+		print_it("arg 1 ==>%*s\narg 2 ==>%s\narg 3 ==>%s\n", 12, av[1], av[2], av[3]);
 	return (0);
 }

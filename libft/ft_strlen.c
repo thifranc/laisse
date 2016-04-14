@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 11:34:52 by thifranc          #+#    #+#             */
-/*   Updated: 2016/02/20 16:28:50 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 10:32:36 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *c)
 	int i;
 
 	i = 0;
-	while (c[i])
+	while (c && c[i])
 		i++;
 	return (i);
 }
