@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 15:08:19 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:31:56 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	get_info(char *path_file)
 	lstat(path_file, &lol);
 	mdr = getpwuid(lol.st_uid);
 	xd = getgrgid(lol.st_gid);
-	printf("%s %d %s %s %d %s %s\n", get_type(lol.st_mode), lol.st_nlink, mdr->pw_name, xd->gr_name, (int)lol.st_size, "2015", path_file);
+	print_it("%s %d %s %s %d %s %s\n", get_type(lol.st_mode), lol.st_nlink, mdr->pw_name, xd->gr_name, (int)lol.st_size, "2015", path_file);
 }
 /*
 int		main(int ac, char **av)
