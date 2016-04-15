@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 13:58:08 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 14:05:10 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 #include <pwd.h>
 #include <grp.h>
 #include "lib.h"
-
-void	print_it(char *str, ...);
-char	*get_type(mode_t st_mode);
-char	*get_user_right(mode_t st_mode, char *r);
-void	get_grp_right(mode_t st_mode, char *r);
-void	get_other_right(mode_t st_mode, char *r);
 
 void	get_other_right(mode_t st_mode, char *r)
 {

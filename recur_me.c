@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 13:57:11 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 14:06:37 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	recur_me(t_list **list)
 {
 	t_list	*new;
 	t_list	*tmp;
-	struct passwd	*mdr;
-	struct group	*xd;
 
 	if (!*list)
 		return ;
@@ -86,13 +84,7 @@ void	recur_me(t_list **list)
 		tmp = new;
 		get_info(tmp);
 		printf("%s:\n", (*list)->path);
-		while (tmp)
-		{
-			mdr = getpwuid((tmp->lstat).st_uid);
-			xd = getgrgid((tmp->lstat).st_gid);
-			print_it("%s  %d %s  %s  %d %s %s\n", get_type((tmp->lstat).st_mode), (tmp->lstat).st_nlink, mdr->pw_name, xd->gr_name, (int)(tmp->lstat).st_size, "2015", tmp->name);
-			tmp = tmp->next;
-		}
+		print_list(new);
 		printf("\n");
 		recur_me(&new);
 		recur_me(&(*list)->next);
