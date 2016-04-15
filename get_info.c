@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 13:12:28 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 13:58:08 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include "lib.h"
 
 void	print_it(char *str, ...);
+char	*get_type(mode_t st_mode);
+char	*get_user_right(mode_t st_mode, char *r);
+void	get_grp_right(mode_t st_mode, char *r);
+void	get_other_right(mode_t st_mode, char *r);
 
 void	get_other_right(mode_t st_mode, char *r)
 {
@@ -93,14 +97,16 @@ char	*get_type(mode_t st_mode)
 
 void	get_info(t_list *node)
 {
-	//struct stat		lol;
-	struct passwd	*mdr;
-	struct group	*xd;
+//	struct passwd	*mdr;
+//	struct group	*xd;
+	t_list			*tmp;
 
-	lstat(node->path, &(node->lstat));
-	mdr = getpwuid((node->lstat).st_uid);
-	xd = getgrgid((node->lstat).st_gid);
-	print_it("%s %d %s %s %d %s %s\n", get_type((node->lstat).st_mode), (node->lstat).st_nlink, mdr->pw_name, xd->gr_name, (int)(node->lstat).st_size, "2015", node->name);
+	tmp = node;
+	while (tmp)
+	{
+		lstat(tmp->path, &(tmp->lstat));
+		tmp = tmp->next;
+	}
 }
 /*
 int		main(int ac, char **av)

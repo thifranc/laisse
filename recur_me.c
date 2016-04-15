@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 13:12:59 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 13:57:11 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,26 @@ void	recur_me(t_list **list)
 {
 	t_list	*new;
 	t_list	*tmp;
+	struct passwd	*mdr;
+	struct group	*xd;
 
 	if (!*list)
 		return ;
 	else if (/*S_ISDIR((*list)->lstat.st_mode)*/(*list)->name[0] == 'd')
 	{
 		new = get_new_list((*list)->path);
-	//	sort_list();
-		//get_info((*list)->path);
-	//	print_list();
-	//	if (opt & OPT_RCUR)
+		//get_info((*list));
+		//	sort_list();
+		//	print_list();
+		//	if (opt & OPT_RCUR)
 		tmp = new;
+		get_info(tmp);
 		printf("%s:\n", (*list)->path);
 		while (tmp)
 		{
-			get_info(tmp);
+			mdr = getpwuid((tmp->lstat).st_uid);
+			xd = getgrgid((tmp->lstat).st_gid);
+			print_it("%s  %d %s  %s  %d %s %s\n", get_type((tmp->lstat).st_mode), (tmp->lstat).st_nlink, mdr->pw_name, xd->gr_name, (int)(tmp->lstat).st_size, "2015", tmp->name);
 			tmp = tmp->next;
 		}
 		printf("\n");
@@ -93,8 +98,5 @@ void	recur_me(t_list **list)
 		recur_me(&(*list)->next);
 	}
 	else
-	{
-//		printf("loupe\n");
 		recur_me(&(*list)->next);
-	}
 }
