@@ -6,13 +6,13 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 10:04:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/03/04 10:19:35 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:46:27 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_lstadd(t_lol **alst, t_lol *new)
 {
 	if (new)
 	{

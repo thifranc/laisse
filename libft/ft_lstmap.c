@@ -6,16 +6,16 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 12:28:36 by thifranc          #+#    #+#             */
-/*   Updated: 2016/03/06 13:00:15 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:46:38 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_lol	*ft_lstmap(t_lol *lst, t_lol *(*f)(t_lol *elem))
 {
-	t_list	*beg;
-	t_list	*tmp;
+	t_lol	*beg;
+	t_lol	*tmp;
 
 	if (lst == NULL)
 		return (NULL);

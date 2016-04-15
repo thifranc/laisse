@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 10:07:41 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:22:32 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:47:44 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct		s_list
+typedef struct		s_lol
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
-}					t_list;
+}					t_lol;
 
 int					ft_atoi(char *str);
 int					ft_base_10(char *str, char *base);
@@ -36,12 +36,12 @@ int					ft_isdigit(int c);
 int					ft_isprint(int c);
 char				*ft_itoa(int n);
 int					ft_lower(int a, int b);
-void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-t_list				*ft_lstnew(void const *content, size_t content_size);
+void				ft_lstadd(t_lol **alst, t_lol *new);
+void				ft_lstdel(t_lol **alst, void (*del)(void *, size_t));
+void				ft_lstdelone(t_lol **alst, void (*del)(void *, size_t));
+void				ft_lstiter(t_lol *lst, void (*f)(t_lol *elem));
+t_lol				*ft_lstmap(t_lol *lst, t_lol *(*f)(t_lol *elem));
+t_lol				*ft_lstnew(void const *content, size_t content_size);
 int					ft_max(int *tab, int size);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);

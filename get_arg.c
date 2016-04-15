@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:13:08 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:48:22 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_info(t_list *node);
 int		ft_higher(int a, int b);
-int		ft_strlen(char *s);
 int		ft_nblen(int nb);
 
 t_list	*new_node(char *name)
@@ -37,7 +36,7 @@ void	new_in_list(char *data, t_list **list)
 	*list = new;
 }
 
-t_list	*arg_to_list(int ac, char **av)
+t_list	*arg_to_list(int ac, char **av, int opt)
 {
 	int		i;
 	t_list	*node;
@@ -46,7 +45,7 @@ t_list	*arg_to_list(int ac, char **av)
 	node = NULL;
 	while (i < ac)
 	{
-		if (/*(opt & OPT_A) ||*/ av[i][0] != '.')//dont get arg if !A and file is hidden
+		if ((opt & OPT_A) || av[i][0] != '.')//dont get arg if !A and file is hidden
 		{
 			new_in_list(av[i], &node);
 			node->path = av[i];
@@ -88,13 +87,21 @@ int		main(int ac, char **av)
 {
 	t_list	*list;
 	t_list	*cpy;
+	int		opt;
 
-	list = arg_to_list(ac, av);
-	cpy = list;
-	recur_sort(&cpy);
-	get_info(cpy);
-	print_list(cpy);
-	printf("\n");
+	opt = get_opt(av[1]);
+	list = NULL;
+	if (opt == 0 && (ac == 1 || ac == 2))
+		list->name = ".";
+	else
+	{
+		list = arg_to_list(ac, av, opt);
+		cpy = list;
+		recur_sort(&cpy);
+		get_info(cpy);
+		print_list(cpy);
+		printf("\n");
+	}
 	recur_me(&cpy);
 	return (0);
 }

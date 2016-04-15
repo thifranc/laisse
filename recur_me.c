@@ -6,23 +6,13 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 17:32:03 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:48:49 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
 void	get_info(t_list *node);
-
-int		ft_strlen(char *s)
-{
-	int i;
-
-	i = 0;
-	while(s[i])
-		i++;
-	return (i);
-}
 
 char	*make_path(char *s1, char *s2)
 {

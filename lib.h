@@ -6,12 +6,14 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:13:45 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:47:15 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIB_H
 #define LIB_H
+
+#include "libft/libft.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,6 +44,7 @@ typedef	struct		s_list
 	struct stat		lstat;
 }					t_list;
 
+int		get_opt(char *s);
 t_list	*list_at(t_list *list, int nb);
 int		list_size(t_list *list);
 int		strcmp3(char *s1, char *s2);
@@ -53,7 +56,7 @@ void	recur_me(t_list **lol);
 t_list	*do_dir(char *dir_name);
 t_list	*new_node(char *name);
 void	new_in_list(char *data, t_list **list);
-t_list	*arg_to_list(int ac, char **av);
+t_list	*arg_to_list(int ac, char **av, int opt);
 void	print_it(char *str, ...);
 char	*get_type(mode_t st_mode);
 char	*get_user_right(mode_t st_mode, char *r);
