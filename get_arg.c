@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 19:26:54 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:38:01 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	t_list	*node;
 
 	i = 1;
+	if (opt)
+		i++;
 	node = NULL;
 	while (i < ac)
 	{
@@ -103,6 +105,6 @@ int		main(int ac, char **av)
 		print_list(cpy);
 		printf("\n");
 	}
-//	recur_me(&cpy);
+	recur_me(&cpy);
 	return (0);
 }
