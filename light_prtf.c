@@ -6,13 +6,12 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 17:41:45 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:15:04 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <stdarg.h>
-#include <string.h>
 
 int		get_blank(int opt, char *out, int max, int len)
 {

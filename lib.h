@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 17:22:58 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:13:45 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <time.h>
 #include <pwd.h>

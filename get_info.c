@@ -6,17 +6,10 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:26:12 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:13:26 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <pwd.h>
-#include <grp.h>
 #include "lib.h"
 
 void	get_other_right(mode_t st_mode, char *r)

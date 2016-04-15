@@ -6,12 +6,10 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 17:24:48 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:13:08 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "lib.h"
 
 void	get_info(t_list *node);
