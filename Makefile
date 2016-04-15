@@ -6,7 +6,7 @@
 #    By: thifranc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:24:34 by thifranc          #+#    #+#              #
-#    Updated: 2016/04/15 19:10:17 by thifranc         ###   ########.fr        #
+#    Updated: 2016/04/15 19:30:51 by thifranc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ all: $(NAME)
 
 $(NAME):
 	make re -C libft/
+	make clean -C libft/
 	gcc $(FLAGS) $(SRCS) libft/libft.a -o $(NAME)
 
 clean:
