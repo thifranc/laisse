@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 10:07:41 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:47:44 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:05:26 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct		s_lol
 {
 	void			*content;
 	size_t			content_size;
-	struct s_list	*next;
+	struct s_lol	*next;
 }					t_lol;
 
 int					ft_atoi(char *str);
