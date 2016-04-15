@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:05:10 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 14:26:12 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ char	*get_type(mode_t st_mode)
 
 void	get_info(t_list *node)
 {
-//	struct passwd	*mdr;
-//	struct group	*xd;
 	t_list			*tmp;
 
 	tmp = node;

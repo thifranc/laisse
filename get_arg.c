@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:07:09 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 14:25:53 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "lib.h"
 
 void	get_info(t_list *node);
+int		ft_higher(int a, int b);
+int		ft_strlen(char *s);
+int		ft_nblen(int nb);
 
 t_list	*new_node(char *name)
 {
@@ -48,7 +51,7 @@ t_list	*arg_to_list(int ac, char **av)
 		if (/*(opt & OPT_A) ||*/ av[i][0] != '.')//dont get arg if !A and file is hidden
 		{
 			new_in_list(av[i], &node);
-			node->path = av[i];//voir si actualise bien le node
+			node->path = av[i];
 		}
 		i++;
 	}
@@ -58,15 +61,27 @@ t_list	*arg_to_list(int ac, char **av)
 void	print_list(t_list *node)
 {
 	t_list	*tmp;
-	struct passwd	*mdr;
-	struct group	*xd;
+	struct passwd	*usr;
+	struct group	*grp;
+	int				max[4];
 
 	tmp = node;
 	while (tmp)
 	{
-		mdr = getpwuid((tmp->lstat).st_uid);
-		xd = getgrgid((tmp->lstat).st_gid);
-		print_it("%s  %d %s  %s  %d %s %s\n", get_type((tmp->lstat).st_mode), (tmp->lstat).st_nlink, mdr->pw_name, xd->gr_name, (int)(tmp->lstat).st_size, "2015", tmp->name);
+		usr = getpwuid((tmp->lstat).st_uid);
+		grp = getgrgid((tmp->lstat).st_gid);
+		max[0] = ft_higher(max[0], ft_nblen((tmp->lstat).st_nlink));
+		max[1] = ft_higher(max[1], ft_strlen(usr->pw_name));
+		max[2] = ft_higher(max[2], ft_strlen(grp->gr_name));
+		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
+		tmp = tmp->next;
+	}
+	tmp = node;//print_it plante si utilise max
+	while (tmp)
+	{
+		usr = getpwuid((tmp->lstat).st_uid);
+		grp = getgrgid((tmp->lstat).st_gid);
+		print_it("%s  %d %s  %s  %d %s %s\n", get_type((tmp->lstat).st_mode), (tmp->lstat).st_nlink, usr->pw_name, grp->gr_name, (int)(tmp->lstat).st_size, "2015", tmp->name);
 		tmp = tmp->next;
 	}
 }
