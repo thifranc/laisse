@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 19:52:17 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:59:40 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,14 @@ void	recur_me(t_list **list, int opt)
 	(strcmp3((*list)->name, ".") && strcmp3((*list)->name, "..")))
 	{
 		new = get_new_list((*list)->path, opt);
-		//get_info((*list));
-		recur_sort(&new);
-		//	print_list();
-		//	if (opt & OPT_RCUR)
 		get_info(new);
+		recur_sort(&new);
 		printf("%s:\n", (*list)->path);
 		print_list(new);
 		printf("\n");
-		recur_me(&new, opt);
-		//if (opt & OPT_RCUR)
-	//	recur_me(&(*list)->next, opt);
+		recur_me(&(*list)->next, opt);
+		if (opt & OPT_RCUR)
+			recur_me(&new, opt);
 	}
 	else
 		recur_me(&(*list)->next, opt);
