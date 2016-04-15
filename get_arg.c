@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:25:53 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 17:24:48 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		main(int ac, char **av)
 
 	list = arg_to_list(ac, av);
 	cpy = list;
+	recur_sort(&cpy);
 	get_info(cpy);
 	print_list(cpy);
 	printf("\n");

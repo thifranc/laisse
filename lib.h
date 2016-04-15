@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:05:29 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 17:22:58 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef	struct		s_list
 	struct stat		lstat;
 }					t_list;
 
+t_list	*list_at(t_list *list, int nb);
+int		list_size(t_list *list);
+int		strcmp3(char *s1, char *s2);
+t_list	*div_int_two(t_list **list);
+void	recur_sort(t_list **list);
+t_list	*fusion(t_list *a, t_list *b);
 void	print_list(t_list *node);
 void	recur_me(t_list **lol);
 t_list	*do_dir(char *dir_name);

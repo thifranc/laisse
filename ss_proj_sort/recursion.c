@@ -6,11 +6,11 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:50:21 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 17:25:39 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lol.h"
+#include "../lib.h"
 
 t_list	*div_int_two(t_list **list)
 {
@@ -31,7 +31,7 @@ t_list	*fusion(t_list *a, t_list *b)
 		return (b);
 	if (!b)
 		return (a);
-	if (strcmp3(a->data, b->data) < 0)
+	if (strcmp3(a->name, b->name) < 0)
 	{
 		out = a;
 		out->next = fusion(a->next, b);
