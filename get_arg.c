@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 13:11:25 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 13:12:43 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "lib.h"
 
-void	get_info(char *path, t_list *node);
+void	get_info(t_list *node);
 
 t_list	*new_node(char *name)
 {
@@ -64,7 +64,7 @@ int		main(int ac, char **av)
 	cpy = list;
 	while (list)
 	{
-		get_info(list->path, list);
+		get_info(list);
 		list = list->next;
 	}
 	printf("\n");

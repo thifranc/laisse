@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 13:11:08 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 13:12:28 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ char	*get_type(mode_t st_mode)
 	return (r);
 }
 
-void	get_info(char *path_file, t_list *node)
+void	get_info(t_list *node)
 {
 	//struct stat		lol;
 	struct passwd	*mdr;
 	struct group	*xd;
 
-	lstat(path_file, &(node->lstat));
+	lstat(node->path, &(node->lstat));
 	mdr = getpwuid((node->lstat).st_uid);
 	xd = getgrgid((node->lstat).st_gid);
 	print_it("%s %d %s %s %d %s %s\n", get_type((node->lstat).st_mode), (node->lstat).st_nlink, mdr->pw_name, xd->gr_name, (int)(node->lstat).st_size, "2015", node->name);
