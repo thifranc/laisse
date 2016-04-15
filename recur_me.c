@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:48:49 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:10:53 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	recur_me(t_list **list)
 
 	if (!*list)
 		return ;
-	else if (/*S_ISDIR((*list)->lstat.st_mode)*/(*list)->name[0] == 'd')
+	else if (S_ISDIR((*list)->lstat.st_mode))
 	{
 		new = get_new_list((*list)->path);
 		//get_info((*list));

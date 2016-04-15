@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:48:22 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:26:54 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int		main(int ac, char **av)
 	opt = get_opt(av[1]);
 	list = NULL;
 	if (opt == 0 && (ac == 1 || ac == 2))
-		list->name = ".";
+//		list->name = ".";
+		return (0);
 	else
 	{
 		list = arg_to_list(ac, av, opt);
@@ -102,6 +103,6 @@ int		main(int ac, char **av)
 		print_list(cpy);
 		printf("\n");
 	}
-	recur_me(&cpy);
+//	recur_me(&cpy);
 	return (0);
 }

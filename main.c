@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:52:32 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:28:20 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,34 @@
 int		get_opt(char *s)
 {
 	int		out;
+	int		i;
 
 	out = 0;
+	i = 0;
 	if (!s || s[0] != '-')
 		return (out);
-	s++;
-	while (*s && (ft_get_char("raRtflih", *s) != -1))
+	i++;
+	while (s[i] && (ft_get_char("raRtflih", s[i]) != -1))
 	{
-		if (*s == 'a')
+		if (s[i] == 'a')
 			out = out | OPT_A;
-		else if (*s == 'f')
+		else if (s[i] == 'f')
 			out = out | OPT_F;
-		else if (*s == 't')
+		else if (s[i] == 't')
 			out = out | OPT_T;
-		else if (*s == 'r')
+		else if (s[i] == 'r')
 			out = out | OPT_R;
-		else if (*s == 'h')
+		else if (s[i] == 'h')
 			out = out | OPT_H;
-		else if (*s == 'i')
+		else if (s[i] == 'i')
 			out = out | OPT_I;
-		else if (*s == 'l')
+		else if (s[i] == 'l')
 			out = out | OPT_L;
-		else if (*s == 'R')
+		else if (s[i] == 'R')
 			out = out | OPT_RCUR;
-		s++;
+		i++;
 	}
-	if (!*s)
+	if (!s[i])
 		return (out);
 	return (out);
 	//else return illegal option;
