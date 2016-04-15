@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 19:10:53 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:52:17 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*make_path(char *s1, char *s2)
 	return (out);
 }
 
-t_list	*get_new_list(char *path)
+t_list	*get_new_list(char *path, int opt)
 {
 	DIR				*dir;
 	struct dirent	*data;
@@ -47,7 +47,7 @@ t_list	*get_new_list(char *path)
 	node = NULL;
 	while ((data = readdir(dir)) != NULL)
 	{
-		if (data->d_name[0] != '.')//+- = opt a toussa
+		if ((opt & OPT_A) || data->d_name[0] != '.')//+- = opt a toussa
 		{
 			new_in_list(data->d_name, &node);
 			node->path = make_path(path, data->d_name);
@@ -57,15 +57,16 @@ t_list	*get_new_list(char *path)
 	return (node);
 }
 
-void	recur_me(t_list **list)
+void	recur_me(t_list **list, int opt)
 {
 	t_list	*new;
 
 	if (!*list)
 		return ;
-	else if (S_ISDIR((*list)->lstat.st_mode))
+	else if (S_ISDIR((*list)->lstat.st_mode) && 
+	(strcmp3((*list)->name, ".") && strcmp3((*list)->name, "..")))
 	{
-		new = get_new_list((*list)->path);
+		new = get_new_list((*list)->path, opt);
 		//get_info((*list));
 		recur_sort(&new);
 		//	print_list();
@@ -74,9 +75,10 @@ void	recur_me(t_list **list)
 		printf("%s:\n", (*list)->path);
 		print_list(new);
 		printf("\n");
-		recur_me(&new);
-		recur_me(&(*list)->next);
+		recur_me(&new, opt);
+		//if (opt & OPT_RCUR)
+	//	recur_me(&(*list)->next, opt);
 	}
 	else
-		recur_me(&(*list)->next);
+		recur_me(&(*list)->next, opt);
 }

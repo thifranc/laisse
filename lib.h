@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:47:15 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 19:41:44 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_list	*div_int_two(t_list **list);
 void	recur_sort(t_list **list);
 t_list	*fusion(t_list *a, t_list *b);
 void	print_list(t_list *node);
-void	recur_me(t_list **lol);
+void	recur_me(t_list **lol, int opt);
 t_list	*do_dir(char *dir_name);
 t_list	*new_node(char *name);
 void	new_in_list(char *data, t_list **list);
