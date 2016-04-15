@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 15:06:03 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 12:12:03 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	recur_me(t_list **list)
 		while (tmp)
 		{
 			get_info(tmp->path);
+			printf(" %s\n", tmp->name);
 			tmp = tmp->next;
 		}
 		printf("\n");

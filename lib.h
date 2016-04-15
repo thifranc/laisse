@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/13 17:04:27 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 11:32:16 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define OPT_L 64
 #define OPT_RCUR 128
 
-typedef	struct	s_list
+typedef	struct		s_list
 {
 	struct s_list	*next;
 	char			*name;
