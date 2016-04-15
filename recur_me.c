@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 14:06:37 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/15 14:34:28 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_list	*get_new_list(char *path)
 void	recur_me(t_list **list)
 {
 	t_list	*new;
-	t_list	*tmp;
 
 	if (!*list)
 		return ;
@@ -81,8 +80,7 @@ void	recur_me(t_list **list)
 		//	sort_list();
 		//	print_list();
 		//	if (opt & OPT_RCUR)
-		tmp = new;
-		get_info(tmp);
+		get_info(new);
 		printf("%s:\n", (*list)->path);
 		print_list(new);
 		printf("\n");
