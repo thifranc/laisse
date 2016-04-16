@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_list2.c                                     :+:      :+:    :+:   */
+/*   ft_list_reverse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/14 13:47:25 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 10:06:54 by thifranc         ###   ########.fr       */
+/*   Created: 2015/12/21 16:40:47 by thifranc          #+#    #+#             */
+/*   Updated: 2016/04/16 11:17:21 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-int		strcmp3(char *s1, char *s2)
+void	ft_list_reverse(t_list **begin_list)
 {
-	int		i;
+	t_list *prv;
+	t_list *cur;
+	t_list *fol;
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int		list_size(t_list *list)
-{
-	if (!list)
-		return (0);
-	else
-		return (1 + list_size(list->next));
-}
-
-t_list	*list_at(t_list *list, int nb)
-{
-	if (!nb)
-		return (list);
-	else
-		return (list_at(list->next, nb - 1));
+	cur = *begin_list;
+	prv = NULL;
+	while (cur != NULL)
+	{
+		fol = cur->next;
+		cur->next = prv;
+		prv = cur;
+		cur = fol;
+	}
+	*begin_list = prv;
 }

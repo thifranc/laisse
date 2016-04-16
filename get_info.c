@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:13:26 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 10:07:25 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,3 @@ void	get_info(t_list *node)
 		tmp = tmp->next;
 	}
 }
-/*
-int		main(int ac, char **av)
-{
-	int	i;
-
-	i = 1;
-	while (i < ac)
-	{
-		get_info(av[i]);
-		i++;
-	}
-	return (0);
-}*/

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/15 18:15:04 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 10:07:35 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,3 @@ void	print_it(char *str, ...)
 	va_end(va);
 	write(1, out, ft_strlen(out));
 }
-/*
-int		main(int ac, char **av)
-{
-	if (ac == 4)
-	{
-		print_it("arg 1 ==>%*s\narg 2 ==>%s\narg 3 ==>%s &&%d\n", 12, av[1], av[2], av[3], 98768976);
-	}
-	return (0);
-}*/
