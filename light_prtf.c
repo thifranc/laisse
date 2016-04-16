@@ -6,12 +6,13 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 10:07:35 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 12:02:05 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <stdarg.h>
+#include <stdlib.h>
 
 int		get_blank(int opt, char *out, int max, int len)
 {
@@ -146,4 +147,16 @@ void	print_it(char *str, ...)
 	}
 	va_end(va);
 	write(1, out, ft_strlen(out));
+}
+
+int		main(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	if (ac == 4)
+	{
+		print_it("bonjour %s %-*s\n", av[1], atoi(av[2]), av[3]);
+	}
+	return (0);
 }
