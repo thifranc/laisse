@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 15:40:29 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 15:55:20 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,10 @@ void	print_list(t_list *node, int opt)
 
 int		main(int ac, char **av)
 {
-	t_list	*list;
 	t_list	*cpy;
 	int		opt;
 
 	opt = get_opt(av[1]);
-	list = NULL;
 	if ((!opt && ac == 1) || (opt && ac == 2))
 	{
 		cpy = new_node("./");
@@ -114,8 +112,7 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		list = arg_to_list(ac, av, opt);
-		cpy = list;
+		cpy = arg_to_list(ac, av, opt);
 		get_info(cpy);
 		recur_sort(&cpy, opt);
 		print_list(cpy, opt);
