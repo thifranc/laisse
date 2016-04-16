@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 11:14:15 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 15:25:50 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		strcmp3(char *s1, char *s2);
 t_list	*div_int_two(t_list **list);
 void	recur_sort(t_list **list, int opt);
 t_list	*fusion(t_list *a, t_list *b, int (*f)(t_list *, t_list *));
-void	print_list(t_list *node);
+void	print_list(t_list *node, int opt);
 void	recur_me(t_list **lol, int opt);
 t_list	*do_dir(char *dir_name);
 t_list	*new_node(char *name);

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 15:21:32 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 15:30:38 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	return (node);
 }
 
-void	print_list(t_list *node)
+void	print_list(t_list *node, int opt)
 {
 	t_list	*tmp;
 	struct passwd	*usr;
@@ -82,9 +82,16 @@ void	print_list(t_list *node)
 	tmp = node;
 	while (tmp)
 	{
-		usr = getpwuid((tmp->lstat).st_uid);
-		grp = getgrgid((tmp->lstat).st_gid);
-		print_it("%s  %*d %-*s  %-*s  %*d %s %s\n", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, "2015", tmp->name);
+		if (opt & OPT_I)
+			print_it("%d ", (tmp->lstat).st_ino);
+		if (opt & OPT_L)
+		{
+			usr = getpwuid((tmp->lstat).st_uid);
+			grp = getgrgid((tmp->lstat).st_gid);
+			print_it("%s  %*d %-*s  %-*s  %*d %s %s\n", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, "2015", tmp->name);
+		}
+		else
+			print_it("%s\n", tmp->name);
 		tmp = tmp->next;
 	}
 }
@@ -109,7 +116,7 @@ int		main(int ac, char **av)
 		cpy = list;
 		get_info(cpy);
 		recur_sort(&cpy, opt);
-		print_list(cpy);
+		print_list(cpy, opt);
 		printf("\n");
 	}
 	recur_me(&cpy, opt);
