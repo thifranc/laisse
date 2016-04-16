@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 14:49:28 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 15:21:32 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	node = NULL;
 	while (i < ac)
 	{
-		if ((opt & OPT_A) || av[i][0] != '.')//dont get arg if !A and file is hidden
+		if ((opt & OPT_A) || av[i][0] != '.')
 		{
 			new_in_list(av[i], &node);
 			node->path = av[i];
@@ -98,8 +98,11 @@ int		main(int ac, char **av)
 	opt = get_opt(av[1]);
 	list = NULL;
 	if ((!opt && ac == 1) || (opt && ac == 2))
-//		list->name = ".";
-		return (0);
+	{
+		cpy = new_node("./");
+		cpy->path = ft_strdup(".");
+		get_info(cpy);
+	}
 	else
 	{
 		list = arg_to_list(ac, av, opt);
