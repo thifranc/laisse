@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 14:44:59 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 14:49:28 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	print_list(t_list *node)
 		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
 		tmp = tmp->next;
 	}
-	tmp = node;//print_it plante si utilise max
+	tmp = node;
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);
