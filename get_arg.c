@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 15:30:38 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 15:40:29 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,14 @@ void	print_list(t_list *node, int opt)
 	t_list	*tmp;
 	struct passwd	*usr;
 	struct group	*grp;
-	int				max[4];
+	int				max[5];
 
 	tmp = node;
 	max[0] = 0;
 	max[1] = 0;
 	max[2] = 0;
 	max[3] = 0;
+	max[4] = 0;
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);
@@ -77,13 +78,14 @@ void	print_list(t_list *node, int opt)
 		max[1] = ft_higher(max[1], ft_strlen(usr->pw_name));
 		max[2] = ft_higher(max[2], ft_strlen(grp->gr_name));
 		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
+		max[4] = ft_higher(max[4], ft_nblen((int)(tmp->lstat).st_ino));
 		tmp = tmp->next;
 	}
 	tmp = node;
 	while (tmp)
 	{
 		if (opt & OPT_I)
-			print_it("%d ", (tmp->lstat).st_ino);
+			print_it("%-*d ", max[4], (tmp->lstat).st_ino);
 		if (opt & OPT_L)
 		{
 			usr = getpwuid((tmp->lstat).st_uid);
