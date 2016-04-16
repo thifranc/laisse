@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 09:28:58 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 10:00:54 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*new_node(char *name)
 
 	if (!(new = (t_list*)malloc(sizeof(t_list) * 1)))
 		return (NULL);
-	new->name = name;
+	new->name = ft_strdup(name);//dup free par defaut
 	new->next = NULL;
 	return (new);
 }
