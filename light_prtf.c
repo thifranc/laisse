@@ -6,75 +6,37 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 12:02:05 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 14:13:18 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <stdarg.h>
 #include <stdlib.h>
-
-int		get_blank(int opt, char *out, int max, int len)
-{
-	int		end;
-	int		i;
-
-	end = (max > len ? max : len);
-	i = 0;
-	if (!opt)
-	{
-		while ((max - i) > len)
-			out[i++] = ' ';
-		return (end);
-	}
-	else
-	{
-		while ((max - i) > len)
-			out[end - i++] = ' ';
-	}
-	return (end - (max - len));//pb si max = 0 et len > 0;
-}
-
-char	*get_till_opt(char **str)
-{
-	int		i;
-	char	*out;
-
-	i = 0;
-	while ((*str)[i] && (*str)[i] != '%')
-		i++;
-	if (!(out = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (**str && **str != '%')
-	{
-		out[i++] = **str;
-		(*str)++;
-	}
-	out[i] = '\0';
-	return (out);
-}
+#include <stdio.h>
 
 char	*do_nb(int opt, int max, va_list va)
 {
 	char	*out;
 	int		arg;
-	int		len;
-	int		k;
+	int		i;
 
+	i = 0;
 	arg = va_arg(va, int);
-	len = ft_nb_len_base(arg, 10);
-	if (!(out = malloc((max > len ? max : len) + 1)))
+	max = max ? max : ft_nb_len_base(arg, 10);
+	if (!(out = malloc(max + 1)))
 		return (NULL);
-	out[max > len ? max : len] = '\0';
-	k = get_blank(opt, out, max, len) - 1;
+	out[max] = '\0';
+	while (i < max)
+		out[i++] = ' ';
+	printf("[%s]\n", out);
+	i = opt ? ft_nb_len_base(arg, 10) : max;
 	if (arg == 0)
 		out[0] = '0';
 	while (arg)
 	{
-		out[k] = arg % 10 + 48;
+		out[--i] = arg % 10 + 48;
 		arg /= 10;
-		k--;
 	}
 	return (out);
 }
@@ -84,18 +46,20 @@ char	*do_string(int opt, int max, va_list va)
 	char	*out;
 	char	*arg;
 	int		i;
-	int		k;
 	int		len;
 
 	i = 0;
 	arg = va_arg(va, char *);
 	len = ft_strlen(arg);
-	if (!(out = malloc((max > len ? max : len) + 1)))
+	max = max ? max : len;
+	if (!(out = malloc(max + 1)))
 		return (NULL);
-	out[max > len ? max : len] = '\0';
-	k = get_blank(opt, out, max, len);
-	while (len > -1)
-		out[k--] = arg[len--];
+	out[max] = '\0';
+	while (i < max)
+		out[i++] = ' ';
+	i = opt ? len : max;
+	while (len > 0)
+		out[--i] = arg[--len];
 	return (out);
 }
 
@@ -121,6 +85,26 @@ char	*get_opt_and_arg(char **s, va_list va)
 		return (do_string(opt, max, va));
 	else
 		return (do_nb(opt, max, va));
+}
+
+char	*get_till_opt(char **str)
+{
+	int		i;
+	char	*out;
+
+	i = 0;
+	while ((*str)[i] && (*str)[i] != '%')
+		i++;
+	if (!(out = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (**str && **str != '%')
+	{
+		out[i++] = **str;
+		(*str)++;
+	}
+	out[i] = '\0';
+	return (out);
 }
 
 void	print_it(char *str, ...)
@@ -156,7 +140,7 @@ int		main(int ac, char **av)
 	i = 1;
 	if (ac == 4)
 	{
-		print_it("bonjour %s %-*s\n", av[1], atoi(av[2]), av[3]);
+		print_it("bonjour %d %-*d\n", atoi(av[1]), atoi(av[2]), atoi(av[3]));
 	}
 	return (0);
 }
