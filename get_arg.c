@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 14:27:27 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 14:44:59 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ void	print_list(t_list *node)
 	int				max[4];
 
 	tmp = node;
+	max[0] = 0;
+	max[1] = 0;
+	max[2] = 0;
+	max[3] = 0;
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);

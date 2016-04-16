@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 14:13:18 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/16 14:45:21 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*do_nb(int opt, int max, va_list va)
 	out[max] = '\0';
 	while (i < max)
 		out[i++] = ' ';
-	printf("[%s]\n", out);
 	i = opt ? ft_nb_len_base(arg, 10) : max;
 	if (arg == 0)
 		out[0] = '0';
@@ -132,7 +131,7 @@ void	print_it(char *str, ...)
 	va_end(va);
 	write(1, out, ft_strlen(out));
 }
-
+/*
 int		main(int ac, char **av)
 {
 	int	i;
@@ -141,6 +140,7 @@ int		main(int ac, char **av)
 	if (ac == 4)
 	{
 		print_it("bonjour %d %-*d\n", atoi(av[1]), atoi(av[2]), atoi(av[3]));
+		print_it("bonjour %s %-*s\n", av[1], atoi(av[2]), av[3]);
 	}
 	return (0);
-}
+}*/
