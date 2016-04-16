@@ -6,7 +6,7 @@
 #    By: thifranc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:24:34 by thifranc          #+#    #+#              #
-#    Updated: 2016/04/16 11:16:56 by thifranc         ###   ########.fr        #
+#    Updated: 2016/04/16 11:48:42 by thifranc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,11 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@make clean -C libft/
 	@echo "erasing $(NAME)"
 
 re: fclean all
+	@make fclean -C libft/
 	@echo "fclean + all"
 
 .PHONY: all clean fclean re
