@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:10:47 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:48:02 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 #define OPT_I 32
 #define OPT_L 64
 #define OPT_RCUR 128
+#define OPT_STAT 256
 #define DR_SON "."
 #define DR_FAT ".."
 
@@ -46,6 +47,7 @@ typedef	struct		s_list
 	struct stat		lstat;
 }					t_list;
 
+void	get_info(t_list *node, int opt);
 char	*get_date(time_t t);
 int		timed(t_list *a, t_list *b);
 int		ascii(t_list *a, t_list *b);

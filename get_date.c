@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/17 09:34:40 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:38:47 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:46:45 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,25 @@ char	*get_date(time_t t)
 	return (out);
 }
 
-void	get_info(t_list *node)
+void	get_info(t_list *node, int opt)
 {
 	t_list			*tmp;
 
 	tmp = node;
-	while (tmp)
+	if (opt & OPT_STAT)
 	{
-		lstat(tmp->path, &(tmp->lstat));
-		tmp = tmp->next;
+		while(tmp)
+		{
+			stat(tmp->path, &(tmp->lstat));
+			tmp = tmp->next;
+		}
+	}
+	else
+	{
+		while (tmp)
+		{
+			lstat(tmp->path, &(tmp->lstat));
+			tmp = tmp->next;
+		}
 	}
 }

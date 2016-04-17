@@ -6,13 +6,12 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:27:27 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:47:55 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-void	get_info(t_list *node);
 int		ft_higher(int a, int b);
 int		ft_nblen(int nb);
 
@@ -67,12 +66,12 @@ int		main(int ac, char **av)
 	{
 		cpy = new_node("./");
 		cpy->path = ft_strdup(".");
-		get_info(cpy);
+		get_info(cpy, opt);
 	}
 	else
 	{
 		cpy = arg_to_list(ac, av, opt);
-		get_info(cpy);
+		get_info(cpy, opt);
 		recur_sort(&cpy, opt);
 		print_list(cpy, opt);
 		printf("\n");

@@ -6,14 +6,12 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:37:17 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:48:00 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 #include <string.h>
-
-void	get_info(t_list *node);
 
 void	print_list(t_list *node, int opt)
 {
@@ -116,7 +114,7 @@ void	recur_me(t_list **list, int opt)
 	strcmp3((*list)->name, DR_SON) && strcmp3((*list)->name, DR_FAT))
 	{
 		new = get_new_list((*list)->path, opt);
-		get_info(new);
+		get_info(new, opt);
 		recur_sort(&new, opt);
 		printf("%s:\n", (*list)->path);
 		print_list(new, opt);
