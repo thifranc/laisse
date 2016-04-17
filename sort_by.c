@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:25 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 10:06:54 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 09:15:37 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,12 @@ int		strcmp3(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-int		list_size(t_list *list)
+int		timed(t_list *a, t_list *b)
 {
-	if (!list)
-		return (0);
-	else
-		return (1 + list_size(list->next));
+	return (a->lstat.st_mtimespec.tv_sec - b->lstat.st_mtimespec.tv_sec);
 }
 
-t_list	*list_at(t_list *list, int nb)
+int		ascii(t_list *a, t_list *b)
 {
-	if (!nb)
-		return (list);
-	else
-		return (list_at(list->next, nb - 1));
+	return (strcmp3(a->name, b->name));
 }

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 10:07:25 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 09:46:05 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,4 @@ char	*get_type(mode_t st_mode)
 		r[0] = '-';
 	get_user_right(st_mode, r + 1);
 	return (r);
-}
-
-void	get_info(t_list *node)
-{
-	t_list			*tmp;
-
-	tmp = node;
-	while (tmp)
-	{
-		lstat(tmp->path, &(tmp->lstat));
-		tmp = tmp->next;
-	}
 }

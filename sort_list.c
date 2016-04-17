@@ -6,11 +6,27 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 11:37:12 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 09:15:38 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+
+int		list_size(t_list *list)
+{
+	if (!list)
+		return (0);
+	else
+		return (1 + list_size(list->next));
+}
+
+t_list	*list_at(t_list *list, int nb)
+{
+	if (!nb)
+		return (list);
+	else
+		return (list_at(list->next, nb - 1));
+}
 
 t_list	*div_int_two(t_list **list)
 {
@@ -21,16 +37,6 @@ t_list	*div_int_two(t_list **list)
 	b = tmp->next;
 	tmp->next = NULL;
 	return (b);
-}
-
-int		timed(t_list *a, t_list *b)
-{
-	return (a->lstat.st_mtimespec.tv_sec - b->lstat.st_mtimespec.tv_sec);
-}
-
-int		ascii(t_list *a, t_list *b)
-{
-	return (strcmp3(a->name, b->name));
 }
 
 t_list	*fusion(t_list *a, t_list *b, int(*f)(t_list *, t_list *))
@@ -76,6 +82,8 @@ void	recur_sort(t_list **list, int opt)
 		*list = fusion(a, b, ascii);
 	}
 	if (opt & OPT_R)
-		ft_list_reverse(list);
+	{
+		dprintf(1, "reversing...]\n");
+//		ft_list_reverse(list);
+	}
 }
-
