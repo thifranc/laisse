@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 09:19:45 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:54:50 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		get_opt(char *s)
 	if (!s || s[0] != '-')
 		return (out);
 	i++;
-	while (s[i] && (ft_get_char("raRtflih", s[i]) != -1))
+	while (s[i] && (ft_get_char("craRtflih", s[i]) != -1))
 	{
 		if (s[i] == 'a')
 			out = out | OPT_A;
@@ -42,6 +42,10 @@ int		get_opt(char *s)
 			out = out | OPT_L;
 		else if (s[i] == 'R')
 			out = out | OPT_RCUR;
+		else if (s[i] == 'c')
+			out = out | OPT_C;
+		else if (s[i] == 'b')
+			out = out | OPT_B;
 		i++;
 	}
 	if (!s[i])

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 13:53:52 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:54:29 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 #define OPT_L 64
 #define OPT_RCUR 128
 #define OPT_STAT 256
+#define OPT_C 512
+#define OPT_B 1024
 #define DR_SON "."
 #define DR_FAT ".."
 
@@ -52,6 +54,8 @@ t_list	*div_by_types(t_list **list);
 void	get_info(t_list *node, int opt);
 char	*get_date(time_t t);
 int		timed(t_list *a, t_list *b);
+int		status(t_list *a, t_list *b);
+int		access(t_list *a, t_list *b);
 int		is_dir(t_list *a, t_list *b);
 int		ascii(t_list *a, t_list *b);
 void	ft_list_reverse(t_list **begin_list);
