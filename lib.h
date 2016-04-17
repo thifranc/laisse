@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 15:25:50 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 09:44:12 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct		s_list
 	struct stat		lstat;
 }					t_list;
 
+char	*get_date(time_t t);
 int		timed(t_list *a, t_list *b);
 int		ascii(t_list *a, t_list *b);
 void	ft_list_reverse(t_list **begin_list);
