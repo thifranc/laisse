@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 13:12:21 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 14:45:14 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	print_list(t_list *node, int opt)
 	struct group	*grp;
 	int				max[5];
 	char			*out;
+	char			buf[100];
 	char			*date;
 
 	tmp = node;
@@ -52,6 +53,11 @@ void	print_list(t_list *node, int opt)
 			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
 			out = ft_strjoin(out, date);
 			out = ft_strjoin(out, tmp->name);
+			if (S_ISLNK((tmp->lstat).st_mode))
+			{
+				buf[readlink(tmp->path, buf, 100)] = '\0';
+				out = print_it("%s -> %s", out, buf);
+			}
 			ft_putstr(out);
 			write(1, "\n", 1);
 		}
