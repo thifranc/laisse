@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 14:45:21 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:08:35 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	*get_till_opt(char **str)
 	return (out);
 }
 
-void	print_it(char *str, ...)
+char	*print_it(char *str, ...)
 {
 	va_list	va;
 	char	*out;
@@ -130,6 +130,7 @@ void	print_it(char *str, ...)
 	}
 	va_end(va);
 	write(1, out, ft_strlen(out));
+	return (out);
 }
 /*
 int		main(int ac, char **av)

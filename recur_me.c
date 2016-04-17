@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 09:46:42 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:08:26 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_list(t_list *node, int opt)
 		{
 			usr = getpwuid((tmp->lstat).st_uid);
 			grp = getgrgid((tmp->lstat).st_gid);
-			print_it("%s  %*d %-*s  %-*s  %*d %s %s\n", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, "2015", tmp->name);
+			ft_putstr(print_it("%s  %*d %-*s  %-*s  %*d %s %s\n", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, "2015", tmp->name));
 		}
 		else
 			print_it("%s\n", tmp->name);
