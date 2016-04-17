@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:08:26 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:37:17 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	print_list(t_list *node, int opt)
 	struct passwd	*usr;
 	struct group	*grp;
 	int				max[5];
+	char			*out;
+	char			*date;
 
 	tmp = node;
 	max[0] = 0;
@@ -48,7 +50,12 @@ void	print_list(t_list *node, int opt)
 		{
 			usr = getpwuid((tmp->lstat).st_uid);
 			grp = getgrgid((tmp->lstat).st_gid);
-			ft_putstr(print_it("%s  %*d %-*s  %-*s  %*d %s %s\n", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, "2015", tmp->name));
+			out = print_it("%s  %*d %-*s  %-*s  %*d ", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size);
+			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
+			out = ft_strjoin(out, date);
+			out = ft_strjoin(out, tmp->name);
+			ft_putstr(out);
+			write(1, "\n", 1);
 		}
 		else
 			print_it("%s\n", tmp->name);

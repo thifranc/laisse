@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 09:53:24 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:27:27 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		main(int ac, char **av)
 	t_list	*cpy;
 	int		opt;
 
-	opt = 0;//get_opt(av[1]);
+	opt = get_opt(av[1]);
 	if ((!opt && ac == 1) || (opt && ac == 2))
 	{
 		cpy = new_node("./");
@@ -73,15 +73,10 @@ int		main(int ac, char **av)
 	{
 		cpy = arg_to_list(ac, av, opt);
 		get_info(cpy);
-		while(cpy)
-		{
-			printf("name == %s\ndate ==%s\n\nnew node:\n", cpy->name, get_date((cpy->lstat).st_mtimespec.tv_sec));
-			cpy = cpy->next;
-		}
-//		recur_sort(&cpy, opt);
-//		print_list(cpy, opt);
+		recur_sort(&cpy, opt);
+		print_list(cpy, opt);
 		printf("\n");
 	}
-//	recur_me(&cpy, opt);
+	recur_me(&cpy, opt);
 	return (0);
 }

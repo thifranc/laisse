@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:08:35 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 10:12:03 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ char	*print_it(char *str, ...)
 		}
 	}
 	va_end(va);
-	write(1, out, ft_strlen(out));
 	return (out);
 }
 /*
