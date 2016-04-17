@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 11:37:38 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 09:19:45 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,3 @@ int		get_opt(char *s)
 	return (out);
 	//else return illegal option;
 }
-/*
-int		main(int ac, char **av)
-{
-	int		opt;
-	t_list	*list;
-	t_list	*repo_list;
-
-	opt = get_opt(av[1]);
-	if (opt == 0 && (ac == 1 || ac == 2))
-		repo_list->name = ".";
-	else
-	{
-		list = arg_to_list(ac, av, opt);//if a or no get or dont the '.'beginning files
-		get_info(list);
-		repo_list = sort_by_types(list);//div list in two lists repo|others (others are "first")
-		sort_list(&list);
-		sort_list(&repo_list);
-		print_list(&list);//print and del
-	}
-	recur_me(&repo_list);//if !R opt it will just print list-directories content
-}
-*/
