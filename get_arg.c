@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 15:06:20 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:23:50 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int		main(int ac, char **av)
 	opt = get_opt(av[1]);
 	if ((!opt && ac == 1) || (opt && ac == 2))
 	{
-		cpy = new_node("./");
-		cpy->path = ft_strdup(".");
-		get_info(cpy, opt);
+		dir = new_node("./");
+		dir->path = ft_strdup(".");
+		get_info(dir, opt);
 	}
 	else
 	{
