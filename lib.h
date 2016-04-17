@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:48:02 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 11:16:52 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #include <pwd.h>
 #include <grp.h>
 
+#define SIX_MONTH 15778458 
 #define OPT_A 1
 #define OPT_F 3
 #define OPT_T 4
