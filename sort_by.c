@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:25 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 15:55:28 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:58:03 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		status(t_list *a, t_list *b)
 	return (a->lstat.st_ctimespec.tv_sec - b->lstat.st_ctimespec.tv_sec);
 }
 
-int		access(t_list *a, t_list *b)
+int		t_access(t_list *a, t_list *b)
 {
 	return (a->lstat.st_atimespec.tv_sec - b->lstat.st_atimespec.tv_sec);
 }
