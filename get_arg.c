@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 14:40:25 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:06:20 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,12 @@ int		main(int ac, char **av)
 		get_info(cpy, opt);
 		dir = div_by_types(&cpy);
 		recur_sort(&cpy, opt);
+		recur_sort(&dir, opt);
 		if (opt & OPT_R)
+		{
 			ft_list_reverse(&cpy);
+			ft_list_reverse(&dir);
+		}
 		print_list(cpy, opt);
 		printf("\n");
 	}
