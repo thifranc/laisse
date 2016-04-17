@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 14:02:32 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 14:40:10 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_list	*div_by_types(t_list **list)
 
 	recur_sort(&(*list), -666);
 	dir = *list;
-	while (S_ISDIR((*list)->lstat.st_mode))
+	while ((*list) && S_ISDIR((*list)->lstat.st_mode))
 		*list = (*list)->next;
 	return (dir);
 }
