@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 09:15:38 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 14:02:32 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ t_list	*div_int_two(t_list **list)
 	b = tmp->next;
 	tmp->next = NULL;
 	return (b);
+}
+
+t_list	*div_by_types(t_list **list)
+{
+	t_list	*dir;
+
+	recur_sort(&(*list), -666);
+	dir = *list;
+	while (S_ISDIR((*list)->lstat.st_mode))
+		*list = (*list)->next;
+	return (dir);
 }
 
 t_list	*fusion(t_list *a, t_list *b, int(*f)(t_list *, t_list *))
@@ -73,17 +84,10 @@ void	recur_sort(t_list **list, int opt)
 	b = div_int_two(list);
 	recur_sort(&a, opt);
 	recur_sort(&b, opt);
-	if (opt & OPT_T)
-	{
+	if (opt == -666)
+		*list = fusion(a, b, is_dir);
+	else if (opt & OPT_T)
 		*list = fusion(a, b, timed);
-	}
 	else 
-	{
 		*list = fusion(a, b, ascii);
-	}
-	if (opt & OPT_R)
-	{
-		dprintf(1, "reversing...]\n");
-//		ft_list_reverse(list);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:47:55 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 13:59:07 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 int		main(int ac, char **av)
 {
 	t_list	*cpy;
+	t_list	*dir;
 	int		opt;
 
 	opt = get_opt(av[1]);
@@ -72,10 +73,13 @@ int		main(int ac, char **av)
 	{
 		cpy = arg_to_list(ac, av, opt);
 		get_info(cpy, opt);
+		dir = div_by_types(&cpy);
 		recur_sort(&cpy, opt);
+		if (opt & OPT_R)
+			ft_list_reverse(&cpy);
 		print_list(cpy, opt);
 		printf("\n");
 	}
-	recur_me(&cpy, opt);
+	recur_me(&dir, opt);
 	return (0);
 }
