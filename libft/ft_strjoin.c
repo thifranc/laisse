@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 09:09:52 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/14 10:58:40 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 13:10:31 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2 && s2[i2])
 		out[i++] = s2[i2++];
 	out[i] = '\0';
-	if (s1)
-		ft_memdel((void*)&s1);
-	if (s2)
-		ft_memdel((void*)&s2);
+//	if (s1)
+//		ft_memdel((void*)&s1);
+//	if (s2)
+//		ft_memdel((void*)&s2);
 	return (out);
 }
