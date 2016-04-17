@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:48:00 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 12:46:21 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_list(t_list *node, int opt)
 			write(1, "\n", 1);
 		}
 		else
-			print_it("%s\n", tmp->name);
+			ft_putstr(print_it("%s\n", tmp->name));
 		tmp = tmp->next;
 	}
 }
