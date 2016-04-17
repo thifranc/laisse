@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 15:25:38 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 09:46:42 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,47 @@
 #include <string.h>
 
 void	get_info(t_list *node);
+
+void	print_list(t_list *node, int opt)
+{
+	t_list	*tmp;
+	struct passwd	*usr;
+	struct group	*grp;
+	int				max[5];
+
+	tmp = node;
+	max[0] = 0;
+	max[1] = 0;
+	max[2] = 0;
+	max[3] = 0;
+	max[4] = 0;
+	while (tmp)
+	{
+		usr = getpwuid((tmp->lstat).st_uid);
+		grp = getgrgid((tmp->lstat).st_gid);
+		max[0] = ft_higher(max[0], ft_nblen((tmp->lstat).st_nlink));
+		max[1] = ft_higher(max[1], ft_strlen(usr->pw_name));
+		max[2] = ft_higher(max[2], ft_strlen(grp->gr_name));
+		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
+		max[4] = ft_higher(max[4], ft_nblen((int)(tmp->lstat).st_ino));
+		tmp = tmp->next;
+	}
+	tmp = node;
+	while (tmp)
+	{
+		if (opt & OPT_I)
+			print_it("%-*d ", max[4], (tmp->lstat).st_ino);
+		if (opt & OPT_L)
+		{
+			usr = getpwuid((tmp->lstat).st_uid);
+			grp = getgrgid((tmp->lstat).st_gid);
+			print_it("%s  %*d %-*s  %-*s  %*d %s %s\n", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, "2015", tmp->name);
+		}
+		else
+			print_it("%s\n", tmp->name);
+		tmp = tmp->next;
+	}
+}
 
 char	*make_path(char *s1, char *s2)
 {
