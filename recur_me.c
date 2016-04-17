@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 15:24:54 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:32:41 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	print_list(t_list *node, int opt)
 	t_list	*tmp;
 	struct passwd	*usr;
 	struct group	*grp;
-	int				max[5];
+	int				max[6];
 	char			*out;
-	char			buf[100];
+	char			buf[256];
 	char			*date;
 
 	tmp = node;
@@ -29,6 +29,7 @@ void	print_list(t_list *node, int opt)
 	max[2] = 0;
 	max[3] = 0;
 	max[4] = 0;
+	max[5] = 0;
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);
@@ -38,9 +39,12 @@ void	print_list(t_list *node, int opt)
 		max[2] = ft_higher(max[2], ft_strlen(grp->gr_name));
 		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
 		max[4] = ft_higher(max[4], ft_nblen((int)(tmp->lstat).st_ino));
+		max[5] += tmp->lstat.st_blocks;
+
 		tmp = tmp->next;
 	}
 	tmp = node;
+	ft_putstr(print_it("total: %d\n", max[5]));
 	while (tmp)
 	{
 		if (opt & OPT_I)
