@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:32:14 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 10:05:48 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	return (node);
 }
 
+t_list	*no_arg(int opt)
+{
+	t_list	*dir;
+
+	dir = new_node("./");
+	dir->path = ft_strdup(".");
+	get_info(dir, opt);
+	return (dir);
+}
+
 int		main(int ac, char **av)
 {
 	t_list	*cpy;
@@ -61,11 +71,7 @@ int		main(int ac, char **av)
 
 	opt = get_opt(av[1]);
 	if ((!opt && ac == 1) || (opt && ac == 2))
-	{
-		dir = new_node("./");
-		dir->path = ft_strdup(".");
-		get_info(dir, opt);
-	}
+		dir = no_arg(opt);
 	else
 	{
 		cpy = arg_to_list(ac, av, opt);

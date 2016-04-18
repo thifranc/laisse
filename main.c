@@ -6,13 +6,46 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 16:01:22 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 10:16:05 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
 /* cflag code is short = 0000 0000 Rlih rtfa*/
+
+void	option_check(int *out, char c)
+{
+		if (c == 'a')
+			*out = *out | OPT_A;
+		else if (c == 'f')
+			*out = *out | OPT_F;
+		else if (c == 't')
+			*out = *out | OPT_T;
+		else if (c == 'r')
+			*out = *out | OPT_R;
+		else if (c == 'h')
+			*out = *out | OPT_H;
+		else if (c == 'i')
+			*out = *out | OPT_I;
+		else if (c == 'l')
+			*out = *out | OPT_L;
+		else if (c == 'R')
+			*out = *out | OPT_RCUR;
+		else if (c == 'c')
+			*out = *out | OPT_C;
+		else if (c == 'b')
+			*out = *out | OPT_U;
+}
+
+void	illegal_option(char *c)
+{
+	char	*out;
+
+	out = print_it("ls: illegl option -- %s\nusage: ls -[opt][file...]", c);
+	ft_putstr(out);
+	exit(-1);
+}
 
 int		get_opt(char *s)
 {
@@ -26,30 +59,12 @@ int		get_opt(char *s)
 	i++;
 	while (s[i] && (ft_get_char("ucraRtflih", s[i]) != -1))
 	{
-		if (s[i] == 'a')
-			out = out | OPT_A;
-		else if (s[i] == 'f')
-			out = out | OPT_F;
-		else if (s[i] == 't')
-			out = out | OPT_T;
-		else if (s[i] == 'r')
-			out = out | OPT_R;
-		else if (s[i] == 'h')
-			out = out | OPT_H;
-		else if (s[i] == 'i')
-			out = out | OPT_I;
-		else if (s[i] == 'l')
-			out = out | OPT_L;
-		else if (s[i] == 'R')
-			out = out | OPT_RCUR;
-		else if (s[i] == 'c')
-			out = out | OPT_C;
-		else if (s[i] == 'b')
-			out = out | OPT_U;
+		option_check(&out, s[i]);
 		i++;
 	}
 	if (!s[i])
 		return (out);
-	return (out);
-	//else return illegal option;
+	s[i + 1] = '\0';
+	illegal_option(&s[i]);
+	return (0);
 }
