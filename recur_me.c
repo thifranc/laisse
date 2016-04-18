@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 15:32:41 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 09:25:04 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	print_list(t_list *node, int opt)
 	max[3] = 0;
 	max[4] = 0;
 	max[5] = 0;
+	out = NULL;
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);
@@ -44,29 +45,30 @@ void	print_list(t_list *node, int opt)
 		tmp = tmp->next;
 	}
 	tmp = node;
-	ft_putstr(print_it("total: %d\n", max[5]));
+	if (opt & OPT_L)
+		ft_putstr(print_it("total: %d\n", max[5]));
 	while (tmp)
 	{
 		if (opt & OPT_I)
-			print_it("%-*d ", max[4], (tmp->lstat).st_ino);
+		{
+			out = print_it("%-*d ", max[4], (tmp->lstat).st_ino);
+		}
 		if (opt & OPT_L)
 		{
 			usr = getpwuid((tmp->lstat).st_uid);
 			grp = getgrgid((tmp->lstat).st_gid);
-			out = print_it("%s  %*d %-*s  %-*s  %*d ", get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size);
 			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
-			out = ft_strjoin(out, date);
-			out = ft_strjoin(out, tmp->name);
+			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s", out, get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, date, tmp->name);
 			if (S_ISLNK((tmp->lstat).st_mode))
 			{
 				buf[readlink(tmp->path, buf, 100)] = '\0';
 				out = print_it("%s -> %s", out, buf);
 			}
-			ft_putstr(out);
-			write(1, "\n", 1);
+			ft_putstr(print_it("%s\n", out));
 		}
 		else
-			ft_putstr(print_it("%s\n", tmp->name));
+			ft_putstr(print_it("%s%s\n", out, tmp->name));
+		ft_memdel((void**)&out);
 		tmp = tmp->next;
 	}
 }
@@ -104,7 +106,7 @@ t_list	*get_new_list(char *path, int opt)
 	node = NULL;
 	while ((data = readdir(dir)) != NULL)
 	{
-		if ((opt & OPT_A) || data->d_name[0] != '.')//+- = opt a toussa
+		if ((opt & OPT_A) || data->d_name[0] != '.')
 		{
 			new_in_list(data->d_name, &node);
 			node->path = make_path(path, data->d_name);
@@ -121,7 +123,7 @@ void	recur_me(t_list **list, int opt)
 	if (!*list)
 		return ;
 	else if (S_ISDIR((*list)->lstat.st_mode) && 
-	strcmp3((*list)->name, DR_SON) && strcmp3((*list)->name, DR_FAT))
+	strcmp3((*list)->name, ".") && strcmp3((*list)->name, ".."))
 	{
 		new = get_new_list((*list)->path, opt);
 		get_info(new, opt);
