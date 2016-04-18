@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 13:29:21 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 13:56:10 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	print_list(t_list *node, int opt)
 			usr = getpwuid((tmp->lstat).st_uid);
 			grp = getgrgid((tmp->lstat).st_gid);
 			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
-			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s", 
-				out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, 
-				max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, date, tmp->name);
+			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s",
+out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
+usr->pw_name, max[2], grp->gr_name, max[3], (tmp->lstat).st_size, date, tmp->name);
 			if (S_ISLNK((tmp->lstat).st_mode))
 			{
 				buf[readlink(tmp->path, buf, 100)] = '\0';
