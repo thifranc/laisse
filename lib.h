@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 13:16:34 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 15:17:51 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 #define OPT_STAT 256
 #define OPT_C 512
 #define OPT_U 1024
+#define OPT_FIRST 2048
 
 typedef	struct		s_list
 {

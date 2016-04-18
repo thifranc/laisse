@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 13:56:10 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 15:18:16 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_list(t_list *node, int opt)
 		tmp = tmp->next;
 	}
 	tmp = node;
-	if (opt & OPT_L)
+	if ((opt & OPT_L) && !(opt & OPT_FIRST))
 		ft_putstr(print_it("total: %d\n", max[5]));
 	while (tmp)
 	{

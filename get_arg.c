@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 13:51:09 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 15:18:50 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		main(int ac, char **av)
 			ft_list_reverse(&cpy);
 			ft_list_reverse(&dir);
 		}
-		print_list(cpy, opt);
+		print_list(cpy, (opt | OPT_FIRST));//sans print le total
 	}
 	recur_me(&dir, opt);
 	return (0);
