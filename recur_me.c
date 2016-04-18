@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 15:18:16 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 15:35:55 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ void	print_list(t_list *node, int opt)
 		tmp = tmp->next;
 	}
 	tmp = node;
+//	if (!(opt & OPT_FIRST))
+//		write(1, "\n\n", 2);
 	if ((opt & OPT_L) && !(opt & OPT_FIRST))
 		ft_putstr(print_it("total: %d\n", max[5]));
 	while (tmp)
 	{
 		if (opt & OPT_I)
-			out = print_it("%-*d ", max[4], (tmp->lstat).st_ino);
+			out = print_it("%*d ", max[4], (tmp->lstat).st_ino);
 		if (opt & OPT_L)
 		{
 			usr = getpwuid((tmp->lstat).st_uid);
@@ -108,9 +110,8 @@ void	recur_me(t_list **list, int opt)
 		recur_sort(&new, opt);
 		if (opt & OPT_R)
 			ft_list_reverse(&new);
-		printf("%s:\n", (*list)->path);
+		printf("\n%s:\n", (*list)->path);
 		print_list(new, opt);
-		printf("\n");
 		recur_me(&(*list)->next, opt);
 		if (opt & OPT_RCUR)
 			recur_me(&new, opt);
