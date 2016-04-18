@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 12:19:48 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 13:50:33 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	suppr_elem(t_list *list)
 	t_list	*cpy;
 
 	cpy = list;
-	while ((cpy->next)->next)
+	while (cpy->next && (cpy->next)->next)
 		cpy = cpy->next;
 	ft_memdel((void**)&(cpy->next));
 	cpy->next = NULL;
