@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 15:35:55 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 16:04:49 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	print_list(t_list *node, int opt)
 	int				max[6];
 	char			*out;
 	char			buf[256];
-	char			*date;
 
 	tmp = node;
 	out = NULL;
@@ -39,8 +38,6 @@ void	print_list(t_list *node, int opt)
 		tmp = tmp->next;
 	}
 	tmp = node;
-//	if (!(opt & OPT_FIRST))
-//		write(1, "\n\n", 2);
 	if ((opt & OPT_L) && !(opt & OPT_FIRST))
 		ft_putstr(print_it("total: %d\n", max[5]));
 	while (tmp)
@@ -49,12 +46,11 @@ void	print_list(t_list *node, int opt)
 			out = print_it("%*d ", max[4], (tmp->lstat).st_ino);
 		if (opt & OPT_L)
 		{
-			usr = getpwuid((tmp->lstat).st_uid);
-			grp = getgrgid((tmp->lstat).st_gid);
-			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
 			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s",
 out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
-usr->pw_name, max[2], grp->gr_name, max[3], (tmp->lstat).st_size, date, tmp->name);
+getpwuid((tmp->lstat).st_uid)->pw_name, max[2],
+getgrgid((tmp->lstat).st_gid)->gr_name, max[3], (tmp->lstat).st_size,
+get_date((tmp->lstat).st_mtimespec.tv_sec), tmp->name);
 			if (S_ISLNK((tmp->lstat).st_mode))
 			{
 				buf[readlink(tmp->path, buf, 100)] = '\0';
@@ -110,12 +106,13 @@ void	recur_me(t_list **list, int opt)
 		recur_sort(&new, opt);
 		if (opt & OPT_R)
 			ft_list_reverse(&new);
-		printf("\n%s:\n", (*list)->path);
+		if (list_size(*list) > 1 || !(opt & OPT_FIRST))
+			ft_putstr(print_it("\n%s:\n", (*list)->path));
 		print_list(new, opt);
-		recur_me(&(*list)->next, opt);
+		recur_me(&(*list)->next, (opt & (MAX - OPT_FIRST)));
 		if (opt & OPT_RCUR)
-			recur_me(&new, opt);
+			recur_me(&new, (opt & (MAX - OPT_FIRST)));
 	}
 	else
-		recur_me(&(*list)->next, opt);
+		recur_me(&(*list)->next, (opt & (MAX - OPT_FIRST)));
 }
