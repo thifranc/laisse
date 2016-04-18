@@ -6,43 +6,11 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 15:41:50 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 16:28:28 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
-
-t_list	*new_node(char *name)
-{
-	t_list	*new;
-
-	if (!(new = (t_list*)malloc(sizeof(t_list) * 1)))
-		return (NULL);
-	new->name = ft_strdup(name);//dup free par defaut
-	new->next = NULL;
-	return (new);
-}
-
-void	new_in_list(char *data, t_list **list)
-{
-	t_list	*new;
-
-	new = new_node(data);
-	if (*list)
-		new->next = *list;
-	*list = new;
-}
-
-void	suppr_elem(t_list *list)
-{
-	t_list	*cpy;
-
-	cpy = list;
-	while (cpy->next && (cpy->next)->next)
-		cpy = cpy->next;
-	ft_memdel((void**)&(cpy->next));
-	cpy->next = NULL;
-}
 
 t_list	*arg_to_list(int ac, char **av, int opt)
 {

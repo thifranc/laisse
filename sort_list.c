@@ -6,27 +6,11 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 10:51:31 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 16:29:01 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
-
-int		list_size(t_list *list)
-{
-	if (!list)
-		return (0);
-	else
-		return (1 + list_size(list->next));
-}
-
-t_list	*list_at(t_list *list, int nb)
-{
-	if (!nb)
-		return (list);
-	else
-		return (list_at(list->next, nb - 1));
-}
 
 t_list	*div_int_two(t_list **list)
 {

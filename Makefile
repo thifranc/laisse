@@ -6,7 +6,7 @@
 #    By: thifranc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:24:34 by thifranc          #+#    #+#              #
-#    Updated: 2016/04/18 13:43:22 by thifranc         ###   ########.fr        #
+#    Updated: 2016/04/18 16:29:10 by thifranc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ls
 INC = lib.h
 
 SRCS = get_arg get_type recur_me light_prtf sort_by sort_list main \
-	   list_reverse get_date
+	   list_reverse get_date print lib_list
 
 SRCS:= $(addsuffix .c, $(SRCS))
 OBJ = $(SRCS:%.c=%.o)
