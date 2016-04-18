@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 10:12:03 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 15:23:22 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*do_nb(int opt, int max, va_list va)
 		out[i++] = ' ';
 	i = opt ? ft_nb_len_base(arg, 10) : max;
 	if (arg == 0)
-		out[0] = '0';
+		out[i] = '0';
 	while (arg)
 	{
 		out[--i] = arg % 10 + 48;
