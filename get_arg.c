@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 10:05:48 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 11:16:44 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,20 @@ void	new_in_list(char *data, t_list **list)
 	t_list	*new;
 
 	new = new_node(data);
-	new->next = *list;
+	if (*list)
+		new->next = *list;
 	*list = new;
+}
+
+void	suppr_elem(t_list *list)
+{
+	t_list	*cpy;
+
+	cpy = list;
+	while ((cpy->next)->next)
+		cpy = cpy->next;
+	ft_memdel((void**)&(cpy->next));
+	cpy->next = NULL;
 }
 
 t_list	*arg_to_list(int ac, char **av, int opt)
@@ -40,16 +52,24 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	i = 1;
 	if (opt)
 		i++;
-	node = NULL;
+	node = new_node("lol");//PROBLEMEME
 	while (i < ac)
 	{
 		if ((opt & OPT_A) || av[i][0] != '.')
 		{
-			new_in_list(av[i], &node);
-			node->path = av[i];
+			if (lstat(av[i], &(node->lstat)) == -1)
+				write(1, "ERROR", 5);
+				//error_file();
+			else
+			{
+				new_in_list(av[i], &node);
+				node->path = av[i];
+			}
 		}
 		i++;
 	}
+	suppr_elem(node);
+	print_list(node, 64);
 	return (node);
 }
 

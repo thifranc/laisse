@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:36:14 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 11:03:20 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,24 @@ t_list	*get_new_list(char *path, int opt)
 	struct dirent	*data;
 	t_list			*node;
 
-	dir = opendir(path);
+	if ((dir = opendir(path)) == NULL)
+	{
+		write(1, "DIR ERROR", 9);
+		return (NULL);
+	}
 	node = NULL;
 	while ((data = readdir(dir)) != NULL)
 	{
 		if ((opt & OPT_A) || data->d_name[0] != '.')
 		{
-			new_in_list(data->d_name, &node);
-			node->path = make_path(path, data->d_name);
+			if (lstat(data->d_name, &(node->lstat)) == -1)
+				write(1, "ERROR", 5);
+				//error_file();
+			else
+			{
+				new_in_list(data->d_name, &node);
+				node->path = make_path(path, data->d_name);
+			}
 		}
 	}
 	closedir(dir);
