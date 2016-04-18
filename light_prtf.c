@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 11:50:27 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 15:23:22 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 16:37:32 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,29 +118,16 @@ char	*print_it(char *str, ...)
 	while (*str)
 	{
 		tmp = get_till_opt(&str);
-		tmp2 = ft_strdup(out);
-		out = ft_strjoin(tmp2, tmp);
+		tmp2 = ft_strdup(out);//dell sauf si !out
+		out = ft_strjoin(tmp2, tmp);//dell all time
 		if (*str && *str == '%')
 		{
 			tmp = get_opt_and_arg(&str, va);
 			str++;
-			tmp2 = ft_strdup(out);
-			out = ft_strjoin(tmp2, tmp);
+			tmp2 = ft_strdup(out);//dell all time
+			out = ft_strjoin(tmp2, tmp);//dell all time
 		}
 	}
 	va_end(va);
 	return (out);
 }
-/*
-int		main(int ac, char **av)
-{
-	int	i;
-
-	i = 1;
-	if (ac == 4)
-	{
-		print_it("bonjour %d %-*d\n", atoi(av[1]), atoi(av[2]), atoi(av[3]));
-		print_it("bonjour %s %-*s\n", av[1], atoi(av[2]), av[3]);
-	}
-	return (0);
-}*/

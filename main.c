@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 12:36:42 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 17:03:44 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	option_check(int *out, char c)
 		*out = *out | OPT_C;
 	else if (c == 'b')
 		*out = *out | OPT_U;
+	else if (c == 'z')
+		*out = *out | OPT_COL;
 }
 
 t_list	*error_dir(char *str)
@@ -63,7 +65,7 @@ int		get_opt(char *s)
 	if (!s || s[0] != '-')
 		return (out);
 	i++;
-	while (s[i] && (ft_get_char("ucraRtflih", s[i]) != -1))
+	while (s[i] && (ft_get_char("zucraRtflih", s[i]) != -1))
 	{
 		option_check(&out, s[i]);
 		i++;

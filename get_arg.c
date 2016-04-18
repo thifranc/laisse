@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 16:28:28 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 16:41:13 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int		main(int ac, char **av)
 		}
 		print_list(cpy, (opt | OPT_FIRST));//sans print le total
 	}
+	if (dir)
+		write(1, "\n", 1);
 	recur_me(&dir, (opt | OPT_FIRST));
 	return (0);
 }
