@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 12:37:11 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 13:16:34 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef	struct		s_list
 	struct stat		lstat;
 }					t_list;
 
+void	get_max(t_list *node, int **max);
 t_list	*error_dir(char *path);
 void	suppr_elem(t_list *list);
 t_list	*no_arg(int opt);

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 12:45:44 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 13:29:21 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,8 @@ void	print_list(t_list *node, int opt)
 	char			*date;
 
 	tmp = node;
-	max[0] = 0;
-	max[1] = 0;
-	max[2] = 0;
-	max[3] = 0;
-	max[4] = 0;
-	max[5] = 0;
 	out = NULL;
+	ft_tabnew(max, 6);
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);
@@ -41,7 +36,6 @@ void	print_list(t_list *node, int opt)
 		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
 		max[4] = ft_higher(max[4], ft_nblen((int)(tmp->lstat).st_ino));
 		max[5] += tmp->lstat.st_blocks;
-
 		tmp = tmp->next;
 	}
 	tmp = node;
@@ -50,15 +44,15 @@ void	print_list(t_list *node, int opt)
 	while (tmp)
 	{
 		if (opt & OPT_I)
-		{
 			out = print_it("%-*d ", max[4], (tmp->lstat).st_ino);
-		}
 		if (opt & OPT_L)
 		{
 			usr = getpwuid((tmp->lstat).st_uid);
 			grp = getgrgid((tmp->lstat).st_gid);
 			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
-			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s", out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, date, tmp->name);
+			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s", 
+				out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, 
+				max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, date, tmp->name);
 			if (S_ISLNK((tmp->lstat).st_mode))
 			{
 				buf[readlink(tmp->path, buf, 100)] = '\0';
