@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 10:37:33 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 12:36:42 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	option_check(int *out, char c)
 		*out = *out | OPT_C;
 	else if (c == 'b')
 		*out = *out | OPT_U;
+}
+
+t_list	*error_dir(char *str)
+{
+	perror(str);
+	return (NULL);
 }
 
 void	illegal_option(char *c)

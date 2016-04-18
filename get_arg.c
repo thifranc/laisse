@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 11:16:44 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 12:19:48 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,13 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	i = 1;
 	if (opt)
 		i++;
-	node = new_node("lol");//PROBLEMEME
+	node = new_node("temp");
 	while (i < ac)
 	{
 		if ((opt & OPT_A) || av[i][0] != '.')
 		{
 			if (lstat(av[i], &(node->lstat)) == -1)
-				write(1, "ERROR", 5);
-				//error_file();
+				perror(av[i]);
 			else
 			{
 				new_in_list(av[i], &node);
@@ -69,7 +68,6 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 		i++;
 	}
 	suppr_elem(node);
-	print_list(node, 64);
 	return (node);
 }
 

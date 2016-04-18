@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 11:03:20 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 12:45:44 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,56 +73,30 @@ void	print_list(t_list *node, int opt)
 	}
 }
 
-char	*make_path(char *s1, char *s2)
-{
-	char	*out;
-	int		i;
-
-	i = 0;
-	if (!(out = malloc((ft_strlen(s1) + ft_strlen(s2) + 2))))
-		return (NULL);
-	while (*s1)
-	{
-		out[i++] = *s1;
-		s1++;
-	}
-	out[i++] = '/';
-	while (*s2)
-	{
-		out[i++] = *s2;
-		s2++;
-	}
-	out[i] = '\0';
-	return (out);
-}
-
 t_list	*get_new_list(char *path, int opt)
 {
 	DIR				*dir;
-	struct dirent	*data;
+	struct dirent	*d;
 	t_list			*node;
 
 	if ((dir = opendir(path)) == NULL)
+		return (error_dir(path));
+	node = new_node("temp");
+	while ((d = readdir(dir)) != NULL)
 	{
-		write(1, "DIR ERROR", 9);
-		return (NULL);
-	}
-	node = NULL;
-	while ((data = readdir(dir)) != NULL)
-	{
-		if ((opt & OPT_A) || data->d_name[0] != '.')
+		if ((opt & OPT_A) || d->d_name[0] != '.')
 		{
-			if (lstat(data->d_name, &(node->lstat)) == -1)
-				write(1, "ERROR", 5);
-				//error_file();
+			if (lstat(print_it("%s/%s", path, d->d_name), &(node->lstat)) == -1)
+				perror(d->d_name);
 			else
 			{
-				new_in_list(data->d_name, &node);
-				node->path = make_path(path, data->d_name);
+				new_in_list(d->d_name, &node);
+				node->path = print_it("%s/%s", path, d->d_name);
 			}
 		}
 	}
 	closedir(dir);
+	suppr_elem(node);
 	return (node);
 }
 
