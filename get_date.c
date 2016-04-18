@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/17 09:34:40 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:37:39 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 09:55:26 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	get_info(t_list *node, int opt)
 	{
 		while (tmp)
 		{
-			stat(tmp->path, &(tmp->lstat));
+			if ((stat(tmp->path, &(tmp->lstat))) == -1)
+				perror(print_it("ls: %s", tmp->name));
 			tmp = tmp->next;
 		}
 	}
@@ -52,7 +53,8 @@ void	get_info(t_list *node, int opt)
 	{
 		while (tmp)
 		{
-			lstat(tmp->path, &(tmp->lstat));
+			if ((lstat(tmp->path, &(tmp->lstat))) == -1)
+				perror(print_it("ls: %s", tmp->name));
 			tmp = tmp->next;
 		}
 	}
