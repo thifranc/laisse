@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:28:14 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 09:34:06 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_list	*div_by_types(t_list **list)
 	return (dir);
 }
 
-t_list	*fusion(t_list *a, t_list *b, int(*f)(t_list *, t_list *))
+t_list	*fusion(t_list *a, t_list *b, int (*f)(t_list *, t_list *))
 {
 	t_list	*out;
 
@@ -99,6 +99,6 @@ void	recur_sort(t_list **list, int opt)
 		*list = fusion(a, b, status);
 	else if (opt & OPT_U)
 		*list = fusion(a, b, t_access);
-	else 
+	else
 		*list = fusion(a, b, ascii);
 }

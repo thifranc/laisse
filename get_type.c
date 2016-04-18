@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/17 09:46:05 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 09:36:52 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_other_right(mode_t st_mode, char *r)
 	else if (st_mode & S_IXOTH)
 		r[2] = 'x';
 	else
-		r[2] = '-';	
+		r[2] = '-';
 }
 
 void	get_grp_right(mode_t st_mode, char *r)
@@ -37,7 +37,7 @@ void	get_grp_right(mode_t st_mode, char *r)
 	else if (st_mode & S_IXGRP)
 		r[2] = 'x';
 	else
-		r[2] = '-';	
+		r[2] = '-';
 }
 
 char	*get_user_right(mode_t st_mode, char *r)
@@ -51,7 +51,7 @@ char	*get_user_right(mode_t st_mode, char *r)
 	else if (st_mode & S_IXUSR)
 		r[2] = 'x';
 	else
-		r[2] = '-';	
+		r[2] = '-';
 	get_grp_right(st_mode, r + 3);
 	get_other_right(st_mode, r + 6);
 	return (r - 1);

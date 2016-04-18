@@ -6,14 +6,11 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:28:09 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 09:32:14 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
-
-int		ft_higher(int a, int b);
-int		ft_nblen(int nb);
 
 t_list	*new_node(char *name)
 {

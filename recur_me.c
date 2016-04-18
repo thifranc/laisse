@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:25:04 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/18 09:36:14 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_list(t_list *node, int opt)
 {
-	t_list	*tmp;
+	t_list			*tmp;
 	struct passwd	*usr;
 	struct group	*grp;
 	int				max[6];
@@ -58,7 +58,7 @@ void	print_list(t_list *node, int opt)
 			usr = getpwuid((tmp->lstat).st_uid);
 			grp = getgrgid((tmp->lstat).st_gid);
 			date = get_date((tmp->lstat).st_mtimespec.tv_sec);
-			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s", out, get_type((tmp->lstat).st_mode), max[0] ,(tmp->lstat).st_nlink,max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, date, tmp->name);
+			out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s", out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1], usr->pw_name, max[2], grp->gr_name, max[3], (int)(tmp->lstat).st_size, date, tmp->name);
 			if (S_ISLNK((tmp->lstat).st_mode))
 			{
 				buf[readlink(tmp->path, buf, 100)] = '\0';
@@ -79,7 +79,7 @@ char	*make_path(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	if (!(out = (char*)malloc(sizeof(char) *(ft_strlen(s1) + ft_strlen(s2) + 2))))
+	if (!(out = malloc((ft_strlen(s1) + ft_strlen(s2) + 2))))
 		return (NULL);
 	while (*s1)
 	{
@@ -122,7 +122,7 @@ void	recur_me(t_list **list, int opt)
 
 	if (!*list)
 		return ;
-	else if (S_ISDIR((*list)->lstat.st_mode) && 
+	else if (S_ISDIR((*list)->lstat.st_mode) &&
 	strcmp3((*list)->name, ".") && strcmp3((*list)->name, ".."))
 	{
 		new = get_new_list((*list)->path, opt);
