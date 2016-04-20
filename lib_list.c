@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:27:29 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 10:20:55 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 10:41:48 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*new_node(char *name)
 
 	if (!(new = (t_list*)malloc(sizeof(t_list) * 1)))
 		return (NULL);
-	if (ft_strcmp(name, ".") == 0) 
+	if (ft_strcmp(name, ".") == 0)
 		new->name = ft_strdup(".-");
 	else if (ft_strcmp(name, "..") == 0)
 		new->name = ft_strdup("..-");

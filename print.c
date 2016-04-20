@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 09:55:29 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 11:18:52 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_max(t_list *list, int *max)
 	struct group	*grp;
 	t_list			*tmp;
 
-	ft_tabnew(max, 6);
+	ft_tabnew(max, 8);
 	tmp = NULL;
 	if (list)
 		tmp = list;
@@ -32,6 +32,8 @@ void	get_max(t_list *list, int *max)
 		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
 		max[4] = ft_higher(max[4], ft_nblen((int)(tmp->lstat).st_ino));
 		max[5] += tmp->lstat.st_blocks;
+		max[6] = ft_higher(max[6], ft_nblen(major((tmp->lstat).st_rdev)));
+		max[7] = ft_higher(max[7], ft_nblen(minor((tmp->lstat).st_rdev)));
 		tmp = tmp->next;
 	}
 }
@@ -81,10 +83,12 @@ void	print_node(t_list *tmp, int *max, int opt)
 		out = print_it("%*d ", max[4], (tmp->lstat).st_ino);
 	if (opt & OPT_L)
 	{
-		out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s%s%s",
+		out = print_it("%s%s  %*d %-*s  %-*s  %s %s %s%s%s",
 	out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
 	getpwuid((tmp->lstat).st_uid)->pw_name, max[2],
-	getgrgid((tmp->lstat).st_gid)->gr_name, max[3], (tmp->lstat).st_size,
+	getgrgid((tmp->lstat).st_gid)->gr_name,// max[3],
+	//(tmp->lstat).st_size,
+	get_min_maj(tmp->lstat, max),
 	get_date((tmp->lstat).st_mtimespec.tv_sec),
 	get_color(tmp, opt), get_name(tmp), RESET);
 		ft_putstr(print_it("%s\n", out));
@@ -97,7 +101,7 @@ void	print_node(t_list *tmp, int *max, int opt)
 void	print_list(t_list *node, int opt)
 {
 	t_list			*tmp;
-	int				max[6];
+	int				max[8];
 
 	get_max(node, max);
 	tmp = node;

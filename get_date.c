@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/17 09:34:40 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:55:26 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 11:23:45 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ char	*get_date(time_t t)
 	}
 	ft_memdel((void*)&(*sed));
 	return (out);
+}
+
+char	*get_min_maj(struct stat lstat, int *max)
+{
+	int		min;
+	int		maj;
+
+	if (S_ISBLK(lstat.st_mode) || S_ISCHR(lstat.st_mode))
+	{
+		maj = major(lstat.st_rdev);
+		min = minor(lstat.st_rdev);
+		return (print_it("%*d, %*d", max[6], maj, max[7], min));
+	}
+	else
+		return (print_it("%*d", max[3], lstat.st_size));
 }
 
 void	get_info(t_list *node, int opt)
