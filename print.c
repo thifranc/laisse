@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 08:46:38 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 09:13:59 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	get_max(t_list *list, int *max)
 	t_list			*tmp;
 
 	ft_tabnew(max, 6);
-	tmp = list;
+	tmp = NULL;
+	if (list)
+		tmp = list;
 	while (tmp)
 	{
 		usr = getpwuid((tmp->lstat).st_uid);
