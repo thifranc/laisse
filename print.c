@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 12:31:28 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:00:57 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*get_color(t_list *tmp, int opt)
 		return (CYAN);
 	else if (S_ISREG(st_mode))
 		return (BLUE);
-	return (RESET);
+	return (NULL);
 }
 
 char	*get_name(t_list *tmp)
@@ -87,13 +87,14 @@ void	print_node(t_list *tmp, int *max, int opt)
 	out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
 	get_usr((tmp->lstat).st_uid), max[2],
 	get_grp((tmp->lstat).st_gid),
-	get_min_maj(tmp->lstat, max),
+	get_min_maj(tmp->lstat, max, opt),
 	get_date((tmp->lstat).st_mtimespec.tv_sec),
 	get_color(tmp, opt), get_name(tmp), RESET);
 		ft_putstr(print_it("%s\n", out));
 	}
 	else
-		ft_putstr(print_it("%s%s\n", out, tmp->name));
+		ft_putstr(print_it("%s%s%s%s\n", out,
+	get_color(tmp, opt), tmp->name, get_color(tmp, opt)));
 	ft_memdel((void**)&out);
 }
 
@@ -105,7 +106,7 @@ void	print_list(t_list *node, int opt)
 	get_max(node, max);
 	tmp = node;
 	if ((opt & OPT_L) && !(opt & OPT_FIRST))
-		ft_putstr(print_it("total: %d\n", max[5]));
+		ft_putstr(print_it("total %d\n", max[5]));
 	while (tmp)
 	{
 		print_node(tmp, max, opt);

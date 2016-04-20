@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/17 09:34:40 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 11:23:45 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 15:15:06 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ char	*get_date(time_t t)
 	if (now - t > SIX_MONTH || t - now > 0)
 	{
 		sed[4][4] = '\0';
-		out = print_it("%s %*s %*s ", sed[1], 2, sed[2], 5, sed[4]);
+		out = print_it("%s %*s %*s", sed[1], 2, sed[2], 5, sed[4]);
 	}
 	else
 	{
 		sed[3][5] = '\0';
-		out = print_it("%s %*s %s ", sed[1], 2, sed[2], sed[3]);
+		out = print_it("%s %*s %s", sed[1], 2, sed[2], sed[3]);
 	}
 	ft_memdel((void*)&(*sed));
 	return (out);
 }
 
-char	*get_min_maj(struct stat lstat, int *max)
+char	*get_min_maj(struct stat lstat, int *max, int opt)
 {
 	int		min;
 	int		maj;
@@ -46,6 +46,8 @@ char	*get_min_maj(struct stat lstat, int *max)
 		min = minor(lstat.st_rdev);
 		return (print_it("%*d, %*d", max[6], maj, max[7], min));
 	}
+	else if (opt & OPT_H)
+		return (print_it("%*dK", max[3] - 2, lstat.st_size / 1024));
 	else
 		return (print_it("%*d", max[3], lstat.st_size));
 }

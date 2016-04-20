@@ -6,19 +6,19 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 12:25:04 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 15:42:17 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-t_list	*arg_to_list(int ac, char **av, int opt)
+t_list	*arg_to_list(int ac, char **av)
 {
 	int		i;
 	t_list	*node;
 
 	i = 1;
-	if (opt)
+	while (av[i][0] == '-')
 		i++;
 	node = new_node("temp");
 	while (i < ac)
@@ -55,12 +55,12 @@ int		main(int ac, char **av)
 	t_list	*dir;
 	int		opt;
 
-	opt = get_opt(av[1]);
+	opt = get_opt(ac, av);
 	if ((!opt && ac == 1) || (opt && ac == 2))
 		dir = no_arg(opt);
 	else
 	{
-		cpy = arg_to_list(ac, av, opt);
+		cpy = arg_to_list(ac, av);
 		get_info(cpy, opt);
 		dir = div_by_types(&cpy);
 		recur_sort(&cpy, opt);

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 12:05:35 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 15:41:41 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,27 @@ void	illegal_option(char *c)
 	exit(-1);
 }
 
-int		get_opt(char *s)
+int		get_opt(int ac, char **av)
 {
 	int		out;
 	int		i;
+	int		k;
+	char	*s;
 
 	out = 0;
-	i = 0;
-	if (!s || s[0] != '-')
-		return (out);
-	i++;
-	while (s[i] && (ft_get_char("zucraRtflih", s[i]) != -1))
+	k = 1;
+	while (k < ac && av[k] && av[k][0] == '-')
 	{
-		option_check(&out, s[i]);
-		i++;
+		s = av[k];
+		i = 1;
+		while (s[i] && (ft_get_char("zucraRtflih", s[i]) != -1))
+		{
+			option_check(&out, s[i]);
+			i++;
+		}
+		if (s[i])
+			illegal_option(&s[i]);
+		k++;
 	}
-	if (!s[i])
-		return (out);
-	s[i + 1] = '\0';
-	illegal_option(&s[i]);
-	return (0);
+	return (out);
 }
