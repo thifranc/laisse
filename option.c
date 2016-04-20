@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 08:51:10 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 12:05:35 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	option_check(int *out, char c)
 
 t_list	*error_dir(char *str)
 {
+	ft_putstr("ls: ");
 	perror(str);
 	return (NULL);
 }

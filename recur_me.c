@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 10:15:23 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 12:08:15 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list	*get_new_list(char *path, int opt)
 		if ((opt & OPT_A) || d->d_name[0] != '.')
 		{
 			if (lstat(print_it("%s/%s", path, d->d_name), &(node->lstat)) == -1)
-				perror(d->d_name);
+				error_dir(print_it("%s/%s", path, d->d_name));
 			else
 			{
 				new_in_list(d->d_name, &node);
