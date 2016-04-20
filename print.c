@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 18:21:06 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 18:22:23 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	print_node(t_list *tmp, int *max, int opt)
 	if (opt & OPT_L)
 	{
 		out = print_it("%s%s  %*d %-*s  %-*s  %s %s %s%s%s",
-	out, get_type((tmp->lstat).st_mode), max[0],
-	(tmp->lstat).st_nlink, max[1],
+				out, get_type((tmp->lstat).st_mode), max[0],
+				(tmp->lstat).st_nlink, max[1],
 				get_usr((tmp->lstat).st_uid), max[2],
 				get_grp((tmp->lstat).st_gid),
 				get_min_maj(tmp->lstat, max, opt),
