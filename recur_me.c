@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 08:50:03 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 09:46:57 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_list	*get_new_list(char *path, int opt)
 		}
 	}
 	closedir(dir);
-	suppr_elem(node);
+	suppr_elem(&node);
 	return (node);
 }
 

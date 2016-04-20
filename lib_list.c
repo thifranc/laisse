@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:27:29 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 08:50:48 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 09:46:52 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ t_list	*new_node(char *name)
 
 	if (!(new = (t_list*)malloc(sizeof(t_list) * 1)))
 		return (NULL);
-	new->name = ft_strdup(name);
+	if (ft_strcmp(name, ".") == 0 || ft_strcmp(name, "..") == 0)
+		new->name = print_it("%s/", name);
+	else
+		new->name = ft_strdup(name);
 	new->next = NULL;
 	return (new);
 }
@@ -33,11 +36,16 @@ void	new_in_list(char *data, t_list **list)
 	*list = new;
 }
 
-void	suppr_elem(t_list *list)
+void	suppr_elem(t_list **list)
 {
 	t_list	*cpy;
 
-	cpy = list;
+	cpy = *list;
+	if (!cpy->next)
+	{
+		ft_memdel((void**)&(*list));
+		return ;
+	}
 	while (cpy->next && (cpy->next)->next)
 		cpy = cpy->next;
 	ft_memdel((void**)&(cpy->next));
