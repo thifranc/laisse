@@ -6,13 +6,11 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 17:03:44 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 08:51:10 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
-
-/* cflag code is short = 0000 0000 Rlih rtfa */
 
 void	option_check(int *out, char c)
 {

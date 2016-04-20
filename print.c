@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 17:02:36 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 08:46:38 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*get_color(t_list *tmp, int opt)
 		return (CYAN);
 	else if (S_ISREG(st_mode))
 		return (BLUE);
-	return (RESET);	
+	return (RESET);
 }
 
 char	*get_name(t_list *tmp)
@@ -80,10 +80,11 @@ void	print_node(t_list *tmp, int *max, int opt)
 	if (opt & OPT_L)
 	{
 		out = print_it("%s%s  %*d %-*s  %-*s  %*d %s %s%s%s",
-				out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
-				getpwuid((tmp->lstat).st_uid)->pw_name, max[2],
-				getgrgid((tmp->lstat).st_gid)->gr_name, max[3], (tmp->lstat).st_size,
-				get_date((tmp->lstat).st_mtimespec.tv_sec), get_color(tmp, opt), get_name(tmp), RESET);
+	out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
+	getpwuid((tmp->lstat).st_uid)->pw_name, max[2],
+	getgrgid((tmp->lstat).st_gid)->gr_name, max[3], (tmp->lstat).st_size,
+	get_date((tmp->lstat).st_mtimespec.tv_sec),
+	get_color(tmp, opt), get_name(tmp), RESET);
 		ft_putstr(print_it("%s\n", out));
 	}
 	else
