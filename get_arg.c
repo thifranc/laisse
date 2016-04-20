@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 09:48:58 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 10:01:55 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		main(int ac, char **av)
 		}
 		print_list(cpy, (opt | OPT_FIRST));
 	}
-	if (dir)
+	if (dir && cpy)
 		write(1, "\n", 1);
 	recur_me(&dir, (opt | OPT_FT));
 	return (0);

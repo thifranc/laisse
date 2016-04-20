@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 09:46:57 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 10:00:50 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	recur_me(t_list **list, int opt)
 		recur_sort(&new, opt);
 		if (opt & OPT_R)
 			ft_list_reverse(&new);
-		if (list_size(*list) > 1 || !(opt & OPT_FT))
+		if ((list_size(*list) > 1) && (opt & OPT_FT))
+			ft_putstr(print_it("%s:\n", (*list)->path));
+		else if (list_size(*list) > 1 || !(opt & OPT_FT))
 			ft_putstr(print_it("\n%s:\n", (*list)->path));
 		print_list(new, opt);
 		recur_me(&(*list)->next, (opt & (MAX - OPT_FT)));
