@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 12:13:45 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 12:25:04 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 			error_dir(av[i]);
 		else
 		{
-			new_in_list(av[i], &node);
+			if (!ft_strcmp(av[i], ".") || !ft_strcmp(av[i], ".."))
+				new_in_list(print_it("%s-", av[i]), &node);
+			else
+				new_in_list(av[i], &node);
 			node->path = av[i];
 		}
 		i++;
