@@ -6,7 +6,7 @@
 #    By: thifranc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/04 19:24:34 by thifranc          #+#    #+#              #
-#    Updated: 2016/04/20 11:34:48 by thifranc         ###   ########.fr        #
+#    Updated: 2016/04/20 12:30:53 by thifranc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ft_ls
 INC = lib.h
 
 SRCS = get_arg get_type recur_me light_prtf sort_by sort_list option \
-	   list_reverse get_date print lib_list
+	   list_reverse get_date print lib_list no_segfault
 
 SRCS:= $(addsuffix .c, $(SRCS))
 OBJ = $(SRCS:%.c=%.o)
