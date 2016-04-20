@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 12:06:40 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 12:13:45 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_list	*arg_to_list(int ac, char **av, int opt)
 	{
 		if (lstat(av[i], &(node->lstat)) == -1)
 			error_dir(av[i]);
-			//perror(av[i]);
 		else
 		{
 			new_in_list(av[i], &node);

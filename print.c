@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 11:18:52 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 12:14:16 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ void	print_node(t_list *tmp, int *max, int opt)
 		out = print_it("%s%s  %*d %-*s  %-*s  %s %s %s%s%s",
 	out, get_type((tmp->lstat).st_mode), max[0], (tmp->lstat).st_nlink, max[1],
 	getpwuid((tmp->lstat).st_uid)->pw_name, max[2],
-	getgrgid((tmp->lstat).st_gid)->gr_name,// max[3],
-	//(tmp->lstat).st_size,
+	getgrgid((tmp->lstat).st_gid)->gr_name,
 	get_min_maj(tmp->lstat, max),
 	get_date((tmp->lstat).st_mtimespec.tv_sec),
 	get_color(tmp, opt), get_name(tmp), RESET);
