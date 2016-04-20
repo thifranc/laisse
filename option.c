@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 17:47:53 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 17:57:02 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,20 @@ int		get_opt(int ac, char **av)
 
 	out = 0;
 	k = 1;
-	while (k < ac && av[k] && av[k][0] == '-')
+	while (k < ac && av[k])
 	{
-		s = av[k];
-		i = 1;
-		while (s[i] && (ft_get_char("zucraRtflih", s[i]) != -1))
+		if (av[k][0] == '-')
 		{
-			option_check(&out, s[i]);
-			i++;
+			s = av[k];
+			i = 1;
+			while (s[i] && (ft_get_char("zucraRtflih", s[i]) != -1))
+			{
+				option_check(&out, s[i]);
+				i++;
+			}
+			if (s[i])
+				illegal_option(&s[i]);
 		}
-		if (s[i])
-			illegal_option(&s[i]);
 		k++;
 	}
 	return (out);
