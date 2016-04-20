@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 16:24:06 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 17:47:53 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ void	illegal_option(char *c)
 	out = print_it("ls: illegl option -- %s\nusage: ls -[opt][file...]", c);
 	ft_putstr(out);
 	exit(-1);
+}
+
+int		hay_arg(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac && av[i] && av[i][0] == '-')
+		i++;
+	if (i == ac)
+		return (0);
+	return (1);
 }
 
 int		get_opt(int ac, char **av)

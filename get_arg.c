@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 16:24:16 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 17:46:36 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,14 @@ int		main(int ac, char **av)
 	int		opt;
 
 	opt = get_opt(ac, av);
-	if ((!opt && ac == 1) || (opt && ac == 2))
+	if (!hay_arg(ac, av))
 		dir = no_arg(opt);
 	else
 	{
 		cpy = arg_to_list(ac, av);
-		print_list(cpy, opt);
 		get_info(cpy, opt);
 		dir = div_by_types(&cpy);
 		recur_sort(&cpy, opt);
-		print_list(cpy, opt);
 		recur_sort(&dir, opt);
 		if (opt & OPT_R)
 		{

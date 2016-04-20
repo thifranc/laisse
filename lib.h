@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 15:42:40 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 17:49:17 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef	struct		s_list
 	struct stat		lstat;
 }					t_list;
 
+int					hay_arg(int ac, char**av);
 char				*get_grp(gid_t nb);
 char				*get_usr(uid_t nb);
 char				*get_min_maj(struct stat lstat, int *max, int opt);
