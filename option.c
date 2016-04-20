@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 15:41:41 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:24:06 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	option_check(int *out, char c)
 		*out = *out | OPT_U;
 	else if (c == 'z')
 		*out = *out | OPT_COL;
+	else if (c == 'u')
+		*out = *out | OPT_U;
 }
 
 t_list	*error_dir(char *str)

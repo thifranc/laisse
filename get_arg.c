@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 15:42:17 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:24:16 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*arg_to_list(int ac, char **av)
 	t_list	*node;
 
 	i = 1;
-	while (av[i][0] == '-')
+	while (i < ac && av[i] && av[i][0] == '-')
 		i++;
 	node = new_node("temp");
 	while (i < ac)
@@ -61,9 +61,11 @@ int		main(int ac, char **av)
 	else
 	{
 		cpy = arg_to_list(ac, av);
+		print_list(cpy, opt);
 		get_info(cpy, opt);
 		dir = div_by_types(&cpy);
 		recur_sort(&cpy, opt);
+		print_list(cpy, opt);
 		recur_sort(&dir, opt);
 		if (opt & OPT_R)
 		{

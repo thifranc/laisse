@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 16:00:57 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:12:51 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*get_name(t_list *tmp)
 
 	if (S_ISLNK(tmp->lstat.st_mode))
 	{
-		buf[readlink(tmp->path, buf, 100)] = '\0';
+		buf[readlink(tmp->path, buf, 256)] = '\0';
 		return (print_it("%s -> %s", tmp->name, buf));
 	}
 	return (tmp->name);

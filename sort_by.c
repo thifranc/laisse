@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_list2.c                                     :+:      :+:    :+:   */
+/*   sort_by.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:25 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 14:39:58 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:36:51 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int		timed(t_list *a, t_list *b)
 
 int		status(t_list *a, t_list *b)
 {
-	return (a->lstat.st_ctimespec.tv_sec - b->lstat.st_ctimespec.tv_sec);
+	return (b->lstat.st_ctimespec.tv_sec - a->lstat.st_ctimespec.tv_sec);
 }
 
 int		t_access(t_list *a, t_list *b)
 {
-	return (a->lstat.st_atimespec.tv_sec - b->lstat.st_atimespec.tv_sec);
+	return (b->lstat.st_atimespec.tv_sec - a->lstat.st_atimespec.tv_sec);
 }
 
 int		ascii(t_list *a, t_list *b)
