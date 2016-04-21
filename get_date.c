@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/17 09:34:40 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 15:15:06 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:58:43 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_min_maj(struct stat lstat, int *max, int opt)
 	{
 		maj = major(lstat.st_rdev);
 		min = minor(lstat.st_rdev);
-		return (print_it("%*d, %*d", max[6], maj, max[7], min));
+		return (print_it(" %*d, %*d", max[6], maj, max[7], min));
 	}
 	else if (opt & OPT_H)
 		return (print_it("%*dK", max[3] - 2, lstat.st_size / 1024));
