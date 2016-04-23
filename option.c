@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 18:06:11 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/21 13:07:24 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	option_check(int *out, char c)
 		*out = *out | OPT_RCUR;
 	else if (c == 'c')
 		*out = *out | OPT_C;
-	else if (c == 'b')
-		*out = *out | OPT_U;
 	else if (c == 'z')
 		*out = *out | OPT_COL;
 	else if (c == 'u')
