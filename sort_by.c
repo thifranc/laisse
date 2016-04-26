@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:25 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 16:36:51 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/26 09:30:56 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 int		timed(t_list *a, t_list *b)
 {
-	return (b->lstat.st_mtimespec.tv_sec - a->lstat.st_mtimespec.tv_sec);
+	if (b->lstat.st_mtimespec.tv_sec == a->lstat.st_mtimespec.tv_sec)
+	{
+		if (b->lstat.st_mtimespec.tv_nsec == a->lstat.st_mtimespec.tv_nsec)
+			return (ft_strcmp(a->name, b->name));
+		else
+			return (b->lstat.st_mtimespec.tv_nsec - a->lstat.st_mtimespec.tv_nsec);
+	}
+	else
+		return (b->lstat.st_mtimespec.tv_sec - a->lstat.st_mtimespec.tv_sec);
 }
 
 int		status(t_list *a, t_list *b)
