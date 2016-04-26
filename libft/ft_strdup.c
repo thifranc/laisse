@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 12:30:55 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/16 10:00:46 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/26 15:20:28 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ char	*ft_strdup(const char *str)
 	if (!(out = (char*)malloc(sizeof(char) * i + 1)))
 		return (NULL);
 	if (str)
-	{
 		ft_strcpy(out, str);
-//		ft_memdel((void*)&str);
-	}
 	else
 		*out = '\0';
 	return (out);

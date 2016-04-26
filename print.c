@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/26 09:52:58 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/26 15:21:18 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_max(t_list *list, int *max)
 {
 	char	*usr;
 	char	*grp;
-	t_list			*tmp;
+	t_list	*tmp;
 
 	ft_tabnew(max, 8);
 	tmp = NULL;
@@ -106,7 +106,7 @@ void	print_list(t_list *node, int opt)
 
 	get_max(node, max);
 	tmp = node;
-	if ((opt & OPT_L) && !(opt & OPT_FIRST))
+	if ((opt & OPT_L) && !(opt & OPT_FIRST) && max[5])
 		ft_putstr(print_it("total %d\n", max[5]));
 	while (tmp)
 	{
