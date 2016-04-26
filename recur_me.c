@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 16:18:16 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 18:17:30 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/26 09:33:10 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	recur_me(t_list **list, int opt)
 		else if (list_size(*list) > 1 || !(opt & OPT_FT))
 			ft_putstr(print_it("\n%s:\n", (*list)->path));
 		print_list(new, opt);
-		recur_me(&(*list)->next, (opt & (MAX - OPT_FT)));
 		if (opt & OPT_RCUR)
 			recur_me(&new, (opt & (MAX - OPT_FT)));
+		recur_me(&(*list)->next, (opt & (MAX - OPT_FT)));
 	}
 	else
 		recur_me(&(*list)->next, (opt & (MAX - OPT_FT)));
