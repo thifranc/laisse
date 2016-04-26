@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 16:25:00 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 18:22:23 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/26 09:52:58 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	get_max(t_list *list, int *max)
 {
-	struct passwd	*usr;
-	struct group	*grp;
+	char	*usr;
+	char	*grp;
 	t_list			*tmp;
 
 	ft_tabnew(max, 8);
@@ -24,11 +24,11 @@ void	get_max(t_list *list, int *max)
 		tmp = list;
 	while (tmp)
 	{
-		usr = getpwuid((tmp->lstat).st_uid);
-		grp = getgrgid((tmp->lstat).st_gid);
+		usr = get_usr((tmp->lstat).st_uid);
+		grp = get_grp((tmp->lstat).st_gid);
 		max[0] = ft_higher(max[0], ft_nblen((tmp->lstat).st_nlink));
-		max[1] = ft_higher(max[1], ft_strlen(usr->pw_name));
-		max[2] = ft_higher(max[2], ft_strlen(grp->gr_name));
+		max[1] = ft_higher(max[1], ft_strlen(usr));
+		max[2] = ft_higher(max[2], ft_strlen(grp));
 		max[3] = ft_higher(max[3], ft_nblen((int)(tmp->lstat).st_size));
 		max[4] = ft_higher(max[4], ft_nblen((int)(tmp->lstat).st_ino));
 		max[5] += tmp->lstat.st_blocks;
