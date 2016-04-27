@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 13:41:57 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/20 18:17:43 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:40:34 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <dirent.h>
 # include <sys/stat.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 # include <sys/types.h>
 # include <stdio.h>
 # include <stdarg.h>
@@ -90,7 +92,7 @@ t_list				*new_node(char *name);
 void				new_in_list(char *data, t_list **list);
 t_list				*arg_to_list(int ac, char **av);
 char				*print_it(char *str, ...);
-char				*get_type(mode_t st_mode);
+char				*get_type(t_list *cur, mode_t st_mode);
 char				*get_user_right(mode_t st_mode, char *r);
 void				get_grp_right(mode_t st_mode, char *r);
 void				get_other_right(mode_t st_mode, char *r);

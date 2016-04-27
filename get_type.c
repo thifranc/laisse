@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/18 09:36:52 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:40:43 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,29 @@ char	*get_user_right(mode_t st_mode, char *r)
 	return (r - 1);
 }
 
-char	*get_type(mode_t st_mode)
+char		get_attr(char *pathname)
+{
+	acl_t	acl;
+
+	if ((acl = acl_get_file(pathname, ACL_TYPE_EXTENDED)))
+	{
+		return ('+');
+		acl_free((void *)acl);
+	}
+	else if ((listxattr(pathname, NULL, 0, XATTR_NOFOLLOW)) > 0)
+		return ('@');
+	return (' ');
+}
+
+char	*get_type(t_list *cur, mode_t st_mode)
 {
 	char	*r;
 
-	if (!(r = (char*)malloc(sizeof(char) * 11)))
+	if (!(r = (char*)malloc(sizeof(char) * 13)))
 		return (0);
-	r[10] = '\0';
+	r[12] = '\0';
+	r[10] = get_attr(cur->path);
+	r[11] = ' ';
 	if (S_ISBLK(st_mode))
 		r[0] = 'b';
 	else if (S_ISCHR(st_mode))
