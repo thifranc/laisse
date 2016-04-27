@@ -6,7 +6,7 @@
 /*   By: thifranc <thifranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 13:47:12 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/27 10:01:54 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:31:11 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ t_list	*div_by_types(t_list **list)
 		*list = (*list)->next;
 		prev->next = NULL;
 	}
-	if (S_ISDIR(dir->lstat.st_mode))
-		return (dir);
-	else
-		return (NULL);
+	return (dir);
 }
 
 t_list	*fusion(t_list *a, t_list *b, int (*f)(t_list *, t_list *))

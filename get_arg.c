@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 11:29:24 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/27 10:02:57 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:31:05 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		main(int ac, char **av)
 		}
 		print_list(cpy, (opt | OPT_FIRST));
 	}
-	if (dir && cpy)
+	if (dir && S_ISDIR(dir->lstat.st_mode) && cpy)
 		write(1, "\n", 1);
 	recur_me(&dir, (opt | OPT_FT));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/11 11:11:51 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/26 15:19:31 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:27:44 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	illegal_option(char *c)
 {
 	char	*out;
 
-	out = print_it("ls: illegl option -- %s\nusage: ls [-option][file...]", c);
+	out = print_it("ls: illegal option -- %s\nusage: ls [-opt][file...]\n", c);
 	ft_putstr(out);
 	exit(-1);
 }
@@ -75,7 +75,7 @@ int		get_opt(int ac, char **av)
 
 	out = 0;
 	k = 1;
-	while (k < ac && av[k])
+	while (k < ac && av[k] && av[k][0] == '-')
 	{
 		if (av[k][0] == '-')
 		{
