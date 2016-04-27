@@ -6,7 +6,7 @@
 /*   By: thifranc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 17:29:31 by thifranc          #+#    #+#             */
-/*   Updated: 2016/04/27 13:40:43 by thifranc         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:49:52 by thifranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_user_right(mode_t st_mode, char *r)
 	return (r - 1);
 }
 
-char		get_attr(char *pathname)
+char	get_attr(char *pathname)
 {
 	acl_t	acl;
 
